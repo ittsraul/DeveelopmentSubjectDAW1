@@ -1,0 +1,1864 @@
+<!DOCTYPE html>
+<html  dir="ltr" lang="es" xml:lang="es">
+<head>
+    <title>2021_1DAW_Programacion: 11. Peticiones asíncronas con PHP y JS</title>
+    <link rel="icon" href="//www.floridaoberta.com/pluginfile.php/1/theme_adaptable/favicon/1651591179/flor-miniatura.png" />
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="moodle, 2021_1DAW_Programacion: 11. Peticiones asíncronas con PHP y JS" />
+<link rel="stylesheet" type="text/css" href="https://www.floridaoberta.com/theme/yui_combo.php?rollup/3.17.2/yui-moodlesimple-min.css" /><script id="firstthemesheet" type="text/css">/** Required in order to fix style inclusion problems in IE with YUI **/</script><link rel="stylesheet" type="text/css" href="https://www.floridaoberta.com/theme/styles.php/adaptable/1651591179_1/all" />
+<script type="text/javascript">
+//<![CDATA[
+var M = {}; M.yui = {};
+M.pageloadstarttime = new Date();
+M.cfg = {"wwwroot":"https:\/\/www.floridaoberta.com","sesskey":"et1ZBqOScM","themerev":"1651591179","slasharguments":1,"theme":"adaptable","iconsystemmodule":"core\/icon_system_fontawesome","jsrev":"1651591179","admin":"admin","svgicons":true,"usertimezone":"Europa\/Par\u00eds","contextid":724193};var yui1ConfigFn = function(me) {if(/-skin|reset|fonts|grids|base/.test(me.name)){me.type='css';me.path=me.path.replace(/\.js/,'.css');me.path=me.path.replace(/\/yui2-skin/,'/assets/skins/sam/yui2-skin')}};
+var yui2ConfigFn = function(me) {var parts=me.name.replace(/^moodle-/,'').split('-'),component=parts.shift(),module=parts[0],min='-min';if(/-(skin|core)$/.test(me.name)){parts.pop();me.type='css';min=''}
+if(module){var filename=parts.join('-');me.path=component+'/'+module+'/'+filename+min+'.'+me.type}else{me.path=component+'/'+component+'.'+me.type}};
+YUI_config = {"debug":false,"base":"https:\/\/www.floridaoberta.com\/lib\/yuilib\/3.17.2\/","comboBase":"https:\/\/www.floridaoberta.com\/theme\/yui_combo.php?","combine":true,"filter":null,"insertBefore":"firstthemesheet","groups":{"yui2":{"base":"https:\/\/www.floridaoberta.com\/lib\/yuilib\/2in3\/2.9.0\/build\/","comboBase":"https:\/\/www.floridaoberta.com\/theme\/yui_combo.php?","combine":true,"ext":false,"root":"2in3\/2.9.0\/build\/","patterns":{"yui2-":{"group":"yui2","configFn":yui1ConfigFn}}},"moodle":{"name":"moodle","base":"https:\/\/www.floridaoberta.com\/theme\/yui_combo.php?m\/1651591179\/","combine":true,"comboBase":"https:\/\/www.floridaoberta.com\/theme\/yui_combo.php?","ext":false,"root":"m\/1651591179\/","patterns":{"moodle-":{"group":"moodle","configFn":yui2ConfigFn}},"filter":null,"modules":{"moodle-core-lockscroll":{"requires":["plugin","base-build"]},"moodle-core-event":{"requires":["event-custom"]},"moodle-core-languninstallconfirm":{"requires":["base","node","moodle-core-notification-confirm","moodle-core-notification-alert"]},"moodle-core-actionmenu":{"requires":["base","event","node-event-simulate"]},"moodle-core-notification":{"requires":["moodle-core-notification-dialogue","moodle-core-notification-alert","moodle-core-notification-confirm","moodle-core-notification-exception","moodle-core-notification-ajaxexception"]},"moodle-core-notification-dialogue":{"requires":["base","node","panel","escape","event-key","dd-plugin","moodle-core-widget-focusafterclose","moodle-core-lockscroll"]},"moodle-core-notification-alert":{"requires":["moodle-core-notification-dialogue"]},"moodle-core-notification-confirm":{"requires":["moodle-core-notification-dialogue"]},"moodle-core-notification-exception":{"requires":["moodle-core-notification-dialogue"]},"moodle-core-notification-ajaxexception":{"requires":["moodle-core-notification-dialogue"]},"moodle-core-handlebars":{"condition":{"trigger":"handlebars","when":"after"}},"moodle-core-blocks":{"requires":["base","node","io","dom","dd","dd-scroll","moodle-core-dragdrop","moodle-core-notification"]},"moodle-core-chooserdialogue":{"requires":["base","panel","moodle-core-notification"]},"moodle-core-dragdrop":{"requires":["base","node","io","dom","dd","event-key","event-focus","moodle-core-notification"]},"moodle-core-maintenancemodetimer":{"requires":["base","node"]},"moodle-core-formchangechecker":{"requires":["base","event-focus","moodle-core-event"]},"moodle-core-tooltip":{"requires":["base","node","io-base","moodle-core-notification-dialogue","json-parse","widget-position","widget-position-align","event-outside","cache-base"]},"moodle-core-checknet":{"requires":["base-base","moodle-core-notification-alert","io-base"]},"moodle-core-popuphelp":{"requires":["moodle-core-tooltip"]},"moodle-core_availability-form":{"requires":["base","node","event","event-delegate","panel","moodle-core-notification-dialogue","json"]},"moodle-backup-confirmcancel":{"requires":["node","node-event-simulate","moodle-core-notification-confirm"]},"moodle-backup-backupselectall":{"requires":["node","event","node-event-simulate","anim"]},"moodle-course-modchooser":{"requires":["moodle-core-chooserdialogue","moodle-course-coursebase"]},"moodle-course-util":{"requires":["node"],"use":["moodle-course-util-base"],"submodules":{"moodle-course-util-base":{},"moodle-course-util-section":{"requires":["node","moodle-course-util-base"]},"moodle-course-util-cm":{"requires":["node","moodle-course-util-base"]}}},"moodle-course-formatchooser":{"requires":["base","node","node-event-simulate"]},"moodle-course-dragdrop":{"requires":["base","node","io","dom","dd","dd-scroll","moodle-core-dragdrop","moodle-core-notification","moodle-course-coursebase","moodle-course-util"]},"moodle-course-categoryexpander":{"requires":["node","event-key"]},"moodle-course-management":{"requires":["base","node","io-base","moodle-core-notification-exception","json-parse","dd-constrain","dd-proxy","dd-drop","dd-delegate","node-event-delegate"]},"moodle-form-dateselector":{"requires":["base","node","overlay","calendar"]},"moodle-form-shortforms":{"requires":["node","base","selector-css3","moodle-core-event"]},"moodle-form-passwordunmask":{"requires":[]},"moodle-question-chooser":{"requires":["moodle-core-chooserdialogue"]},"moodle-question-preview":{"requires":["base","dom","event-delegate","event-key","core_question_engine"]},"moodle-question-searchform":{"requires":["base","node"]},"moodle-availability_completion-form":{"requires":["base","node","event","moodle-core_availability-form"]},"moodle-availability_date-form":{"requires":["base","node","event","io","moodle-core_availability-form"]},"moodle-availability_grade-form":{"requires":["base","node","event","moodle-core_availability-form"]},"moodle-availability_group-form":{"requires":["base","node","event","moodle-core_availability-form"]},"moodle-availability_grouping-form":{"requires":["base","node","event","moodle-core_availability-form"]},"moodle-availability_profile-form":{"requires":["base","node","event","moodle-core_availability-form"]},"moodle-mod_assign-history":{"requires":["node","transition"]},"moodle-mod_attendance-groupfilter":{"requires":["base","node"]},"moodle-mod_forum-subscriptiontoggle":{"requires":["base-base","io-base"]},"moodle-mod_quiz-quizbase":{"requires":["base","node"]},"moodle-mod_quiz-modform":{"requires":["base","node","event"]},"moodle-mod_quiz-util":{"requires":["node","moodle-core-actionmenu"],"use":["moodle-mod_quiz-util-base"],"submodules":{"moodle-mod_quiz-util-base":{},"moodle-mod_quiz-util-slot":{"requires":["node","moodle-mod_quiz-util-base"]},"moodle-mod_quiz-util-page":{"requires":["node","moodle-mod_quiz-util-base"]}}},"moodle-mod_quiz-dragdrop":{"requires":["base","node","io","dom","dd","dd-scroll","moodle-core-dragdrop","moodle-core-notification","moodle-mod_quiz-quizbase","moodle-mod_quiz-util-base","moodle-mod_quiz-util-page","moodle-mod_quiz-util-slot","moodle-course-util"]},"moodle-mod_quiz-toolboxes":{"requires":["base","node","event","event-key","io","moodle-mod_quiz-quizbase","moodle-mod_quiz-util-slot","moodle-core-notification-ajaxexception"]},"moodle-mod_quiz-autosave":{"requires":["base","node","event","event-valuechange","node-event-delegate","io-form"]},"moodle-mod_quiz-questionchooser":{"requires":["moodle-core-chooserdialogue","moodle-mod_quiz-util","querystring-parse"]},"moodle-message_airnotifier-toolboxes":{"requires":["base","node","io"]},"moodle-filter_glossary-autolinker":{"requires":["base","node","io-base","json-parse","event-delegate","overlay","moodle-core-event","moodle-core-notification-alert","moodle-core-notification-exception","moodle-core-notification-ajaxexception"]},"moodle-filter_mathjaxloader-loader":{"requires":["moodle-core-event"]},"moodle-editor_atto-rangy":{"requires":[]},"moodle-editor_atto-editor":{"requires":["node","transition","io","overlay","escape","event","event-simulate","event-custom","node-event-html5","node-event-simulate","yui-throttle","moodle-core-notification-dialogue","moodle-core-notification-confirm","moodle-editor_atto-rangy","handlebars","timers","querystring-stringify"]},"moodle-editor_atto-plugin":{"requires":["node","base","escape","event","event-outside","handlebars","event-custom","timers","moodle-editor_atto-menu"]},"moodle-editor_atto-menu":{"requires":["moodle-core-notification-dialogue","node","event","event-custom"]},"moodle-report_eventlist-eventfilter":{"requires":["base","event","node","node-event-delegate","datatable","autocomplete","autocomplete-filters"]},"moodle-report_loglive-fetchlogs":{"requires":["base","event","node","io","node-event-delegate"]},"moodle-gradereport_grader-gradereporttable":{"requires":["base","node","event","handlebars","overlay","event-hover"]},"moodle-gradereport_history-userselector":{"requires":["escape","event-delegate","event-key","handlebars","io-base","json-parse","moodle-core-notification-dialogue"]},"moodle-tool_capability-search":{"requires":["base","node"]},"moodle-tool_lp-dragdrop-reorder":{"requires":["moodle-core-dragdrop"]},"moodle-tool_monitor-dropdown":{"requires":["base","event","node"]},"moodle-assignfeedback_editpdf-editor":{"requires":["base","event","node","io","graphics","json","event-move","event-resize","transition","querystring-stringify-simple","moodle-core-notification-dialog","moodle-core-notification-alert","moodle-core-notification-warning","moodle-core-notification-exception","moodle-core-notification-ajaxexception"]},"moodle-atto_accessibilitychecker-button":{"requires":["color-base","moodle-editor_atto-plugin"]},"moodle-atto_accessibilityhelper-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_align-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_bold-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_charmap-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_clear-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_collapse-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_emoticon-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_equation-button":{"requires":["moodle-editor_atto-plugin","moodle-core-event","io","event-valuechange","tabview","array-extras"]},"moodle-atto_html-beautify":{},"moodle-atto_html-button":{"requires":["promise","moodle-editor_atto-plugin","moodle-atto_html-beautify","moodle-atto_html-codemirror","event-valuechange"]},"moodle-atto_html-codemirror":{"requires":["moodle-atto_html-codemirror-skin"]},"moodle-atto_image-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_indent-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_italic-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_link-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_managefiles-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_managefiles-usedfiles":{"requires":["node","escape"]},"moodle-atto_media-button":{"requires":["moodle-editor_atto-plugin","moodle-form-shortforms"]},"moodle-atto_noautolink-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_orderedlist-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_recordrtc-recording":{"requires":["moodle-atto_recordrtc-button"]},"moodle-atto_recordrtc-button":{"requires":["moodle-editor_atto-plugin","moodle-atto_recordrtc-recording"]},"moodle-atto_rtl-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_strike-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_subscript-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_superscript-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_table-button":{"requires":["moodle-editor_atto-plugin","moodle-editor_atto-menu","event","event-valuechange"]},"moodle-atto_title-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_underline-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_undo-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_unorderedlist-button":{"requires":["moodle-editor_atto-plugin"]}}},"gallery":{"name":"gallery","base":"https:\/\/www.floridaoberta.com\/lib\/yuilib\/gallery\/","combine":true,"comboBase":"https:\/\/www.floridaoberta.com\/theme\/yui_combo.php?","ext":false,"root":"gallery\/1651591179\/","patterns":{"gallery-":{"group":"gallery"}}}},"modules":{"core_filepicker":{"name":"core_filepicker","fullpath":"https:\/\/www.floridaoberta.com\/lib\/javascript.php\/1651591179\/repository\/filepicker.js","requires":["base","node","node-event-simulate","json","async-queue","io-base","io-upload-iframe","io-form","yui2-treeview","panel","cookie","datatable","datatable-sort","resize-plugin","dd-plugin","escape","moodle-core_filepicker","moodle-core-notification-dialogue"]},"core_comment":{"name":"core_comment","fullpath":"https:\/\/www.floridaoberta.com\/lib\/javascript.php\/1651591179\/comment\/comment.js","requires":["base","io-base","node","json","yui2-animation","overlay","escape"]},"mathjax":{"name":"mathjax","fullpath":"https:\/\/cdnjs.cloudflare.com\/ajax\/libs\/mathjax\/2.7.2\/MathJax.js?delayStartupUntil=configured"}}};
+M.yui.loader = {modules: {}};
+
+//]]>
+</script>
+    <!-- CSS print media -->
+    <link rel="stylesheet" type="text/css" href="https://www.floridaoberta.com/theme/adaptable/style/print.css" media="print">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Twitter Card data -->
+    <meta name="twitter:card" value="summary">
+    <meta name="twitter:site" value="Florida Oberta" />
+    <meta name="twitter:title" value="2021_1DAW_Programacion: 11. Peticiones asíncronas con PHP y JS" />
+
+    <!-- Open Graph data -->
+    <meta property="og:title" content="2021_1DAW_Programacion: 11. Peticiones asíncronas con PHP y JS" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.floridaoberta.com" />
+    <meta name="og:site_name" value="Florida Oberta" />
+
+    <!-- Chrome, Firefox OS and Opera on Android topbar color -->
+    <meta name="theme-color" content="#004D7A" />
+
+    <!-- Windows Phone topbar color -->
+    <meta name="msapplication-navbutton-color" content="#004D7A" />
+
+    <!-- iOS Safari topbar color -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="#004D7A" />
+
+        <!-- Load Google Fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,400i'
+    rel='stylesheet'
+    type='text/css'>
+    
+            <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,400i'
+        rel='stylesheet'
+        type='text/css'>
+    
+            <link href='https://fonts.googleapis.com/css?family=Audiowide:400,400i'
+        rel='stylesheet'
+        type='text/css'>
+    </head>
+
+<body  id="page-mod-resource-view" class="format-topcoll  path-mod path-mod-resource chrome dir-ltr lang-es yui-skin-sam yui3-skin-sam www-floridaoberta-com pagelayout-incourse course-7886 context-724193 cmid-396984 category-769 two-column  header-style1">
+
+<div>
+    <a class="sr-only sr-only-focusable" href="#maincontent">Salta al contenido principal</a>
+</div><script type="text/javascript" src="https://www.floridaoberta.com/theme/yui_combo.php?rollup/3.17.2/yui-moodlesimple-min.js"></script><script type="text/javascript" src="https://www.floridaoberta.com/theme/jquery.php/core/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="https://www.floridaoberta.com/theme/jquery.php/theme_adaptable/pace-min.js"></script>
+<script type="text/javascript" src="https://www.floridaoberta.com/theme/jquery.php/theme_adaptable/jquery-flexslider-min.js"></script>
+<script type="text/javascript" src="https://www.floridaoberta.com/theme/jquery.php/theme_adaptable/tickerme.js"></script>
+<script type="text/javascript" src="https://www.floridaoberta.com/theme/jquery.php/theme_adaptable/jquery-easing-min.js"></script>
+<script type="text/javascript" src="https://www.floridaoberta.com/theme/jquery.php/theme_adaptable/adaptable.js"></script>
+<script type="text/javascript" src="https://www.floridaoberta.com/lib/javascript.php/1651591179/lib/javascript-static.js"></script>
+<script type="text/javascript">
+//<![CDATA[
+document.body.className += ' jsenabled';
+//]]>
+</script>
+
+
+<div id="page" class="container-fluid fullin showblockicons">
+
+
+
+
+    <header id="adaptable-page-header-wrapper"  >
+
+    <div id="above-header" class="mb-2 mb-lg-3">
+        <div class="container">
+            <nav class="navbar navbar-expand btco-hover-menu">
+
+                <div id="adaptable-page-header-nav-drawer" data-region="drawer-toggle" class="d-lg-none mr-3">
+                    <button id="drawer" aria-expanded="false" aria-controls="nav-drawer" type="button" class="nav-link float-sm-left mr-1" data-side="left">
+                        <i class="fa fa-bars fa-fw " aria-hidden="true"></i>
+                        <span class="sr-only">Panel lateral</span>
+                    </button>
+                </div>
+
+                <div class="collapse navbar-collapse">
+                <div class="my-auto m-1"></div>
+                    <ul class="navbar-nav ml-auto my-auto">
+
+                        <div class="pull-left">
+                            <ul class="navbar-nav mr-auto"></ul>                        </div>
+
+                        
+                                                <li class="nav-item d-xs-block d-sm-block d-md-none my-auto mx-1 my-auto">
+                            <a class="nav-link" href="https://www.floridaoberta.com/course/search.php">
+                                <i class="icon fa fa-search fa-fw " title="Search" aria-label="Search"></i>
+                            </a>
+                        </li>
+
+                        <div class="my-auto mx-1"><div class="float-right popover-region collapsed">
+    <a id="message-drawer-toggle-6293fc4fecd7c6293fc4fe580c44" class="nav-link d-inline-block popover-region-toggle position-relative" href="#"
+            role="button">
+        <i class="icon fa fa-comment fa-fw "  title="Mostrar/ocultar cajón de mensajería" aria-label="Mostrar/ocultar cajón de mensajería"></i>
+        <div class="count-container " data-region="count-container"
+        aria-label="Hay 2 conversaciones sin leer">2</div>
+    </a>
+</div><div class="popover-region collapsed popover-region-notifications"
+    id="nav-notification-popover-container" data-userid="23408"
+    data-region="popover-region">
+    <div class="popover-region-toggle nav-link"
+        data-region="popover-region-toggle"
+        role="button"
+        aria-controls="popover-region-container-6293fc4fed86e6293fc4fe580c45"
+        aria-haspopup="true"
+        aria-label="Mostrar la ventana de notificaciones cuando no hay ninguna"
+        tabindex="0">
+                <i class="icon fa fa-bell fa-fw "  title="Mostrar/ocultar menú de notificaciones" aria-label="Mostrar/ocultar menú de notificaciones"></i>
+        <div class="count-container " data-region="count-container"
+        aria-label="Hay 2 notificaciones sin leer">2</div>
+
+    </div>
+    <div 
+        id="popover-region-container-6293fc4fed86e6293fc4fe580c45"
+        class="popover-region-container"
+        data-region="popover-region-container"
+        aria-expanded="false"
+        aria-hidden="true"
+        aria-label="Ventana de notificación"
+        role="region">
+        <div class="popover-region-header-container">
+            <h3 class="popover-region-header-text" data-region="popover-region-header-text">Notificaciones</h3>
+            <div class="popover-region-header-actions" data-region="popover-region-header-actions">        <a class="mark-all-read-button"
+           href="#"
+           title="Marcar como leído"
+           data-action="mark-all-read"
+           role="button">
+            <span class="normal-icon"><i class="icon fa fa-check fa-fw "  title="Marcar como leído" aria-label="Marcar como leído"></i></span>
+            <span class="loading-icon icon-no-margin"><i class="icon fa fa-circle-o-notch fa-spin fa-fw "  title="Cargando" aria-label="Cargando"></i></span>
+        </a>
+        <a href="https://www.floridaoberta.com/message/notificationpreferences.php?userid=23408"
+           title="Preferencias de notificación">
+            <i class="icon fa fa-cog fa-fw "  title="Preferencias de notificación" aria-label="Preferencias de notificación"></i>
+        </a>
+</div>
+        </div>
+        <div class="popover-region-content-container" data-region="popover-region-content-container">
+            <div class="popover-region-content" data-region="popover-region-content">
+                        <div class="all-notifications"
+            data-region="all-notifications"
+            role="log"
+            aria-busy="false"
+            aria-atomic="false"
+            aria-relevant="additions"></div>
+        <div class="empty-message" tabindex="0" data-region="empty-message">No tienes notificaciones</div>
+
+            </div>
+            <span class="loading-icon icon-no-margin"><i class="icon fa fa-circle-o-notch fa-spin fa-fw "  title="Cargando" aria-label="Cargando"></i></span>
+        </div>
+                <a class="see-all-link"
+                    href="https://www.floridaoberta.com/message/output/popup/notifications.php">
+                    <div class="popover-region-footer-container">
+                        <div class="popover-region-seeall-text">Ver todo</div>
+                    </div>
+                </a>
+    </div>
+</div></div><li class="nav-item dropdown ml-2 my-auto"></li>
+                            <li class="nav-item dropdown ml-3 ml-md-4 mr-2 mr-md-0">
+                                <a class="nav-link dropdown-toggle" role="button" href="#"
+id="usermenu" data-toggle="dropdown"
+aria-haspopup="true" aria-expanded="false"
+aria-controls="usermenu-dropdown"
+aria-label="Menú del Usuario"
+title="RAUL SALES HERRANZ">
+        <span class="d-none d-md-inline-block mx-1">RAUL SALES HERRANZ</span>
+    <img src="https://www.floridaoberta.com/pluginfile.php/706222/user/icon/adaptable/f1?rev=8242468" class="userpicture" width="50" height="50" role="presentation" aria-hidden="true" />
+</a>
+
+<div class="dropdown-menu dropdown-menu-right" role="menu"
+id="usermenu-dropdown"
+aria-labelledby="usermenu" >
+    <a class="dropdown-item" href="https://www.floridaoberta.com/my" title="Área personal"><i class="fa fa-dashboard"></i>Área personal</a><a class="dropdown-item" href="https://www.floridaoberta.com/user/profile.php" title="Ver perfil"><i class="fa fa-user"></i>Ver perfil</a><a class="dropdown-item" href="https://www.floridaoberta.com/user/edit.php" title="Editar perfil"><i class="fa fa-cog"></i>Editar perfil</a><a class="dropdown-item" href="https://www.floridaoberta.com/grade/report/overview/index.php" title="Calificaciones"><i class="fa fa-list-alt"></i>Calificaciones</a><a class="dropdown-item" href="https://www.floridaoberta.com/user/preferences.php" title="Preferencias"><i class="fa fa-cog"></i>Preferencias</a><a class="dropdown-item" href="https://www.floridaoberta.com/calendar/view.php" title="Calendario"><i class="fa fa-calendar"></i>Calendario</a><a class="dropdown-item" href="https://www.floridaoberta.com/login/logout.php?sesskey=et1ZBqOScM" title="Cerrar sesión"><i class="fa fa-sign-out"></i>Cerrar sesión</a>
+</div>                            </li>
+
+                        
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
+
+    
+    <div id="page-header" class="container">
+        <div class="row">
+
+        <div class="d-none d-lg-block col-lg-4">
+        <div class="d-flex align-items-start bd-highlight"><div class="p-2 bd-highlight"><a href=https://www.floridaoberta.com aria-label="home" title="Florida Oberta"><img src=//www.floridaoberta.com/pluginfile.php/1/theme_adaptable/logo/1651591179/FLORIDA-UNIVERSITARIA.png id="logo" alt="" /></a></div></div>        </div>
+
+        <div class="col-lg-8 p-0 my-auto">
+                                    <div class="socialbox pull-right">
+                            <div class="socialbox"><a target="_blank" title="Twitter" href="https://twitter.com/floridauni?lang=es"><i class="fa fa-twitter-square"></i></a><a target="_blank" title="Facebook" href="https://www.facebook.com/floridauniversitaria"><i class="fa fa-facebook-square"></i></a></div>                        </div>
+                        
+                
+                <div id="course-header">
+                                    </div>
+
+            </div>
+            </div>
+
+    </div>
+
+    
+
+
+
+
+
+<div id="nav-drawer" data-region="drawer" class="d-print-none moodle-has-zindex closed" aria-hidden="true" tabindex="-1">
+    <nav class="list-group">
+
+        <ul class="list-unstyled components">
+
+            <a class="list-group-item list-group-item-action" href="https://www.floridaoberta.com/my/index.php"data-key="" data-isexpandable="0" data-indent="0" data-showdivider="0" data-type="1" data-nodetype="1"data-collapse="0" data-forceopen="1" data-isactive="1" data-hidden="0" data-preceedwithhr="0" data-parent-key="main-navigation-drawer"><div class="m-l-0"><i class="fa fa-dashboard fa-lg"></i>  Área personal</div></a></li><a class="list-group-item list-group-item-action" href="https://www.floridaoberta.com/calendar/view.php"data-key="" data-isexpandable="0" data-indent="0" data-showdivider="0" data-type="1" data-nodetype="1"data-collapse="0" data-forceopen="1" data-isactive="1" data-hidden="0" data-preceedwithhr="0" data-parent-key="main-navigation-drawer"><div class="m-l-0"><i class="fa fa-calendar fa-lg"></i> Eventos</div></a></li><a href="#main-navigation-drawer1" class="list-group-item dropdown-toggle" aria-haspopup="true" data-target="#" data-toggle="collapse" title=""><i class="fa fa-briefcase fa-lg"></i> Mis Cursos</a><ul class="collapse" id="main-navigation-drawer1"><a class="list-group-item list-group-item-action" href="https://www.floridaoberta.com/course/view.php?id=7885"data-key="" data-isexpandable="0" data-indent="1" data-showdivider="0" data-type="1" data-nodetype="1"data-collapse="0" data-forceopen="1" data-isactive="1" data-hidden="0" data-preceedwithhr="0" data-parent-key="main-navigation-drawer1"><div class=" m-l-1">2021_1DAW_Len.Marcas</div></a></li><a class="list-group-item list-group-item-action" href="https://www.floridaoberta.com/course/view.php?id=7881"data-key="" data-isexpandable="0" data-indent="1" data-showdivider="0" data-type="1" data-nodetype="1"data-collapse="0" data-forceopen="1" data-isactive="1" data-hidden="0" data-preceedwithhr="0" data-parent-key="main-navigation-drawer1"><div class=" m-l-1">2021_1DAW_BBDD</div></a></li><a class="list-group-item list-group-item-action" href="https://www.floridaoberta.com/course/view.php?id=7882"data-key="" data-isexpandable="0" data-indent="1" data-showdivider="0" data-type="1" data-nodetype="1"data-collapse="0" data-forceopen="1" data-isactive="1" data-hidden="0" data-preceedwithhr="0" data-parent-key="main-navigation-drawer1"><div class=" m-l-1">2021_1DAW_Entornos</div></a></li><a class="list-group-item list-group-item-action" href="https://www.floridaoberta.com/course/view.php?id=7884"data-key="" data-isexpandable="0" data-indent="1" data-showdivider="0" data-type="1" data-nodetype="1"data-collapse="0" data-forceopen="1" data-isactive="1" data-hidden="0" data-preceedwithhr="0" data-parent-key="main-navigation-drawer1"><div class=" m-l-1">2021_1DAW_English_I</div></a></li><a class="list-group-item list-group-item-action" href="https://www.floridaoberta.com/course/view.php?id=7886"data-key="" data-isexpandable="0" data-indent="1" data-showdivider="0" data-type="1" data-nodetype="1"data-collapse="0" data-forceopen="1" data-isactive="1" data-hidden="0" data-preceedwithhr="0" data-parent-key="main-navigation-drawer1"><div class=" m-l-1">2021_1DAW_Programacion</div></a></li><a class="list-group-item list-group-item-action" href="https://www.floridaoberta.com/course/view.php?id=7889"data-key="" data-isexpandable="0" data-indent="1" data-showdivider="0" data-type="1" data-nodetype="1"data-collapse="0" data-forceopen="1" data-isactive="1" data-hidden="0" data-preceedwithhr="0" data-parent-key="main-navigation-drawer1"><div class=" m-l-1">2021_1DAW_PI</div></a></li><a class="list-group-item list-group-item-action" href="https://www.floridaoberta.com/course/view.php?id=7887"data-key="" data-isexpandable="0" data-indent="1" data-showdivider="0" data-type="1" data-nodetype="1"data-collapse="0" data-forceopen="1" data-isactive="1" data-hidden="0" data-preceedwithhr="0" data-parent-key="main-navigation-drawer1"><div class=" m-l-1">2021_1DAW_SI</div></a></li><a class="list-group-item list-group-item-action" href="https://www.floridaoberta.com/course/view.php?id=7888"data-key="" data-isexpandable="0" data-indent="1" data-showdivider="0" data-type="1" data-nodetype="1"data-collapse="0" data-forceopen="1" data-isactive="1" data-hidden="0" data-preceedwithhr="0" data-parent-key="main-navigation-drawer1"><div class=" m-l-1">2021_1DAW_Tutoria1</div></a></li></ul><a href="#main-navigation-drawer2" class="list-group-item dropdown-toggle" aria-haspopup="true" data-target="#" data-toggle="collapse" title=""><i class="fa fa-sitemap fa-lg"></i><span class="menutitle">Este curso</span></a><ul class="collapse" id="main-navigation-drawer2"><a class="list-group-item list-group-item-action" href="https://www.floridaoberta.com/user/index.php?id=7886"data-key="" data-isexpandable="0" data-indent="1" data-showdivider="0" data-type="1" data-nodetype="1"data-collapse="0" data-forceopen="1" data-isactive="1" data-hidden="0" data-preceedwithhr="0" data-parent-key="main-navigation-drawer2"><div class=" m-l-1"><i class="fa fa-users fa-lg"></i>Participantes</div></a></li><a class="list-group-item list-group-item-action" href="https://www.floridaoberta.com/grade/report/index.php?id=7886"data-key="" data-isexpandable="0" data-indent="1" data-showdivider="0" data-type="1" data-nodetype="1"data-collapse="0" data-forceopen="1" data-isactive="1" data-hidden="0" data-preceedwithhr="0" data-parent-key="main-navigation-drawer2"><div class=" m-l-1"><i class="icon fa fa-table fa-fw icon" aria-hidden="true"  ></i>Calificaciones</div></a></li><a class="list-group-item list-group-item-action" href="https://www.floridaoberta.com/mod/quiz/index.php?id=7886"data-key="" data-isexpandable="0" data-indent="1" data-showdivider="0" data-type="1" data-nodetype="1"data-collapse="0" data-forceopen="1" data-isactive="1" data-hidden="0" data-preceedwithhr="0" data-parent-key="main-navigation-drawer2"><div class=" m-l-1"><img class="icon icon" alt="" aria-hidden="true" src="https://www.floridaoberta.com/theme/image.php/adaptable/quiz/1651591179/icon" />Cuestionarios</div></a></li><a class="list-group-item list-group-item-action" href="https://www.floridaoberta.com/mod/forum/index.php?id=7886"data-key="" data-isexpandable="0" data-indent="1" data-showdivider="0" data-type="1" data-nodetype="1"data-collapse="0" data-forceopen="1" data-isactive="1" data-hidden="0" data-preceedwithhr="0" data-parent-key="main-navigation-drawer2"><div class=" m-l-1"><img class="icon icon" alt="" aria-hidden="true" src="https://www.floridaoberta.com/theme/image.php/adaptable/forum/1651591179/icon" />Foros</div></a></li><a class="list-group-item list-group-item-action" href="https://www.floridaoberta.com/course/resources.php?id=7886"data-key="" data-isexpandable="0" data-indent="1" data-showdivider="0" data-type="1" data-nodetype="1"data-collapse="0" data-forceopen="1" data-isactive="1" data-hidden="0" data-preceedwithhr="0" data-parent-key="main-navigation-drawer2"><div class=" m-l-1"><img class="icon icon" alt="" aria-hidden="true" src="https://www.floridaoberta.com/theme/image.php/adaptable/mod_page/1651591179/icon" />Recursos</div></a></li><a class="list-group-item list-group-item-action" href="https://www.floridaoberta.com/mod/assign/index.php?id=7886"data-key="" data-isexpandable="0" data-indent="1" data-showdivider="0" data-type="1" data-nodetype="1"data-collapse="0" data-forceopen="1" data-isactive="1" data-hidden="0" data-preceedwithhr="0" data-parent-key="main-navigation-drawer2"><div class=" m-l-1"><img class="icon icon" alt="" aria-hidden="true" src="https://www.floridaoberta.com/theme/image.php/adaptable/assign/1651591179/icon" />Tareas</div></a></li></ul><a class="list-group-item list-group-item-action" href="https://www.floridaoberta.com/local/horarios/student_view.php"data-key="" data-isexpandable="0" data-indent="0" data-showdivider="0" data-type="1" data-nodetype="1"data-collapse="0" data-forceopen="1" data-isactive="1" data-hidden="0" data-preceedwithhr="0" data-parent-key="main-navigation-drawer"><div class="m-l-0"><i class="fa  fa-clock-o"></i> Horarios</div></a></li>
+                        
+        </ul>
+
+    </nav>
+
+    <nav class="list-group m-t-1">
+                <a class="list-group-item list-group-item-action " href="https://www.floridaoberta.com/admin/search.php">
+            <div class="m-l-0">
+                <div class="media">
+                    <span class="media-left">
+                        <i class="icon fa fa-wrench fa-fw" aria-hidden="true"></i>
+                    </span>
+                    <span class="media-body ">Administración del sitio</span>
+                </div>
+            </div>
+        </a>
+    </nav>
+</div>
+
+<div id="main-navbar" class="d-none d-lg-block">
+    <div class="container">
+        <div class="navbar navbar-expand-md btco-hover-menu">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+
+            <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+            <nav role="navigation" aria-label="Enlaces del sitio">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a title="" class="nav-link" href="https://www.floridaoberta.com/my/index.php"><i class="fa fa-dashboard fa-lg"></i>  Área personal</a></li><li class="nav-item"><a title="" class="nav-link" href="https://www.floridaoberta.com/calendar/view.php"><i class="fa fa-calendar fa-lg"></i> Eventos</a></li><li class="nav-item dropdown"><a href="#" class="nav-link dropdown-toggle my-auto" role="button" id="main-navigation0" aria-haspopup="true" aria-expanded="false" aria-controls="dropdownmain-navigation0" data-target="#" data-toggle="dropdown" title=""><i class="fa fa-briefcase fa-lg"></i> Mis Cursos</a><ul role="menu" class="dropdown-menu" id="dropdownmain-navigation0" aria-labelledby="main-navigation0"><li><a title="21/22 -1DAW - Lenguajes de Marcas y Sist. de Gestión de Inf." class="dropdown-item" href="https://www.floridaoberta.com/course/view.php?id=7885">2021_1DAW_Len.Marcas</a></li><li><a title="21/22 -1DAW-Bases de datos" class="dropdown-item" href="https://www.floridaoberta.com/course/view.php?id=7881">2021_1DAW_BBDD</a></li><li><a title="21/22 -1DAW-Entornos de Desarrollo" class="dropdown-item" href="https://www.floridaoberta.com/course/view.php?id=7882">2021_1DAW_Entornos</a></li><li><a title="21/22 -1DAW-Inglés I" class="dropdown-item" href="https://www.floridaoberta.com/course/view.php?id=7884">2021_1DAW_English_I</a></li><li><a title="21/22 -1DAW-Programación" class="dropdown-item" href="https://www.floridaoberta.com/course/view.php?id=7886">2021_1DAW_Programacion</a></li><li><a title="21/22 -1DAW-Proyecto Integrado" class="dropdown-item" href="https://www.floridaoberta.com/course/view.php?id=7889">2021_1DAW_PI</a></li><li><a title="21/22 -1DAW-Sistemas Informáticos" class="dropdown-item" href="https://www.floridaoberta.com/course/view.php?id=7887">2021_1DAW_SI</a></li><li><a title="21/22 -1DAW-Tutoría" class="dropdown-item" href="https://www.floridaoberta.com/course/view.php?id=7888">2021_1DAW_Tutoria1</a></li></ul></li><li class="nav-item dropdown"><a href="#" class="nav-link dropdown-toggle my-auto" role="button" id="main-navigation0" aria-haspopup="true" aria-expanded="false" aria-controls="dropdownmain-navigation0" data-target="#" data-toggle="dropdown" title=""><i class="fa fa-sitemap fa-lg"></i><span class="menutitle">Este curso</span></a><ul role="menu" class="dropdown-menu" id="dropdownmain-navigation0" aria-labelledby="main-navigation0"><li><a title="" class="dropdown-item" href="https://www.floridaoberta.com/user/index.php?id=7886"><i class="fa fa-users fa-lg"></i>Participantes</a></li><li><a title="" class="dropdown-item" href="https://www.floridaoberta.com/grade/report/index.php?id=7886"><i class="icon fa fa-table fa-fw icon" aria-hidden="true"  ></i>Calificaciones</a></li><li><a class="dropdown-item" href="https://www.floridaoberta.com/mod/quiz/index.php?id=7886"><img class="icon icon" alt="" aria-hidden="true" src="https://www.floridaoberta.com/theme/image.php/adaptable/quiz/1651591179/icon" />Cuestionarios</a></li><li><a class="dropdown-item" href="https://www.floridaoberta.com/mod/forum/index.php?id=7886"><img class="icon icon" alt="" aria-hidden="true" src="https://www.floridaoberta.com/theme/image.php/adaptable/forum/1651591179/icon" />Foros</a></li><li><a class="dropdown-item" href="https://www.floridaoberta.com/course/resources.php?id=7886"><img class="icon icon" alt="" aria-hidden="true" src="https://www.floridaoberta.com/theme/image.php/adaptable/mod_page/1651591179/icon" />Recursos</a></li><li><a class="dropdown-item" href="https://www.floridaoberta.com/mod/assign/index.php?id=7886"><img class="icon icon" alt="" aria-hidden="true" src="https://www.floridaoberta.com/theme/image.php/adaptable/assign/1651591179/icon" />Tareas</a></li></ul></li><li class="nav-item"><a title="Horarios" class="nav-link" href="https://www.floridaoberta.com/local/horarios/student_view.php"><i class="fa  fa-clock-o"></i> Horarios</a></li>
+                                    </ul>
+            </nav>
+
+                <ul class="navbar-nav ml-auto">
+
+                    
+                                            <li class="nav-item mx-0">
+                             <div id="edittingbutton" class="breadcrumb-button">
+                                                            </div>
+                        </li>
+                        
+                                               <li class="nav-item mr-1 hbl">
+                               <a href="javascript:void(0);" class="nav-link moodlezoom"
+                                   title="Ocultar bloques">
+                                   <i class="fa fa-indent fa-lg"></i>
+                                   <span class="zoomdesc">Ocultar bloques</span>
+                               </a>
+                           </li>
+                           <li class="nav-item mr-1 sbl">
+                               <a href="javascript:void(0);" class="nav-link moodlezoom"
+                                   title="Mostrar bloques">
+                                   <i class="fa fa-outdent fa-lg"></i>
+                                   <span class="zoomdesc">Mostrar bloques</span>
+                               </a>
+                           </li>
+                                    </ul>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</header>
+
+
+<div class="container outercont">
+    <div class="row"><div id="page-navbar" class="col-12"><nav role="navigation" aria-label="Breadcrumb">
+            <ol  class="breadcrumb d-none d-md-flex"><li><a href="https://www.floridaoberta.com/"><i title="Inicio" class="fa fa-home fa-lg"></i></a></li><span class="separator"><i class="fa-angle-right fa"></i>
+                             </span><li><span tabindex="0">Mis cursos</span></li><span class="separator"><i class="fa-angle-right fa"></i>
+                             </span><li><span itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a itemprop="url" href="https://www.floridaoberta.com/course/index.php?categoryid=734"><span itemprop="title">2021-2022</span></a></span></li><span class="separator"><i class="fa-angle-right fa"></i>
+                             </span><li><span itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a itemprop="url" href="https://www.floridaoberta.com/course/index.php?categoryid=738"><span itemprop="title">Formación Profesional - Ciclos Formativos</span></a></span></li><span class="separator"><i class="fa-angle-right fa"></i>
+                             </span><li><span itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a itemprop="url" href="https://www.floridaoberta.com/course/index.php?categoryid=740"><span itemprop="title"> Ciclos Formativos Presenciales</span></a></span></li><span class="separator"><i class="fa-angle-right fa"></i>
+                             </span><li><span itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a itemprop="url" href="https://www.floridaoberta.com/course/index.php?categoryid=768"><span itemprop="title">DAW</span></a></span></li><span class="separator"><i class="fa-angle-right fa"></i>
+                             </span><li><span itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a itemprop="url" href="https://www.floridaoberta.com/course/index.php?categoryid=769"><span itemprop="title">1º DAW</span></a></span></li><span class="separator"><i class="fa-angle-right fa"></i>
+                             </span><li><span itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a itemprop="url" title="21/22 -1DAW-Programación" href="https://www.floridaoberta.com/course/view.php?id=7886"><span itemprop="title">21/22 -1DAW-Programación</span></a></span></li><span class="separator"><i class="fa-angle-right fa"></i>
+                             </span><li><span itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a itemprop="url" href="https://www.floridaoberta.com/course/view.php?id=7886#section-14"><span itemprop="title">10. Peticiones Asíncronas</span></a></span></li><span class="separator"><i class="fa-angle-right fa"></i>
+                             </span><li><a href="https://www.floridaoberta.com/mod/resource/view.php?id=396984" id="label_10_44" class=""  tabindex="-1"  title="Archivo" >11. Peticiones asíncronas con PHP y JS</a></li></ol>
+        </nav></div></div>    <div id="page-content" class="row flex-row-reverse">
+        <section id="region-main" class="col-md-9">
+            <span class="notifications" id="user-notifications"></span><div role="main"><span id="maincontent"></span><h2>11. Peticiones asíncronas con PHP y JS</h2><div class="resourceworkaround">Haga clic en <a href="https://www.floridaoberta.com/pluginfile.php/724193/mod_resource/content/4/11.%20Peticiones%20as%C3%ADncronas%20con%20PHP%20y%20JS.pdf" onclick="window.open('https://www.floridaoberta.com/pluginfile.php/724193/mod_resource/content/4/11.%20Peticiones%20as%C3%ADncronas%20con%20PHP%20y%20JS.pdf', '', 'width=800,height=600,toolbar=no,location=no,menubar=no,copyhistory=no,status=no,directories=no,scrollbars=yes,resizable=yes'); return false;">11. Peticiones asíncronas con PHP y JS.pdf</a> para ver el archivo.</div></div><nav class="activity_footer activity-navigation">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="float-left">
+                <a href="https://www.floridaoberta.com/mod/url/view.php?id=396983&forceview=1" id="prev-activity-link" class="previous_activity prevnext"  title="Video - Peticiones asíncronas con JS y PHP" ><span class="nav_icon"><i class="fa fa-angle-double-left"></i></span><span class="text"><span class="nav_guide">Actividad previa</span><br>Video - Peticiones asíncronas con JS y PHP</span></a>
+
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="float-right">
+                <a href="https://www.floridaoberta.com/mod/folder/view.php?id=396985&forceview=1" id="next-activity-link" class="next_activity prevnext"  title="Peticiones asíncronas - código de ejemplo" ><span class="text"><span class="nav_guide">Próxima actividad</span><br>Peticiones asíncronas - código de ejemplo</span><span class="nav_icon"><i class="fa fa-angle-double-right"></i></span></a>
+
+            </div>
+        </div>
+    </div>
+</nav>
+<div class="jumpnav">
+    <div class="jumpmenu">
+    <form method="post" action="https://www.floridaoberta.com/course/jumpto.php" class="form-inline" id="url_select_f6293fc4fe580c46">
+        <input type="hidden" name="sesskey" value="et1ZBqOScM">
+            <label for="jump-to-activity" class="sr-only">
+                Ir a...
+            </label>
+        <select  id="jump-to-activity" class="custom-select jumpmenu" name="jump"
+                 >
+                    <option value="" selected>Ir a...</option>
+                    <option value="/mod/forum/view.php?id=396758&amp;forceview=1" >Avisos</option>
+                    <option value="/mod/resource/view.php?id=404997&amp;forceview=1" >Guia Docente</option>
+                    <option value="/mod/forum/view.php?id=396761&amp;forceview=1" >Foro General de Programación</option>
+                    <option value="/mod/url/view.php?id=432623&amp;forceview=1" >Sesión de refuerzo PROG 06/10/2021</option>
+                    <option value="/mod/url/view.php?id=443463&amp;forceview=1" >Sesión de refuerzo PROG 16/11/2021</option>
+                    <option value="/mod/url/view.php?id=446941&amp;forceview=1" >Sesión de refuerzo PROG 09/12/2021 DUDAS SOBRE AEV3</option>
+                    <option value="/mod/url/view.php?id=460679&amp;forceview=1" >Sesión de refuerzo PROG - 15/02/2022 - Sesión de repaso, dudas pre-examen 2ª Evaluación.</option>
+                    <option value="/mod/url/view.php?id=465410&amp;forceview=1" >Sesión de refuerzo PROG 21/03/2022</option>
+                    <option value="/mod/url/view.php?id=470069&amp;forceview=1" >PROG - 1DAW - 04_05_2022 - Sesión de Refuerzo pre-examen</option>
+                    <option value="/mod/assign/view.php?id=448946&amp;forceview=1" > AR1. Scripts de repaso 1ªEvaluación: estructuras de control, arrays y funciones. </option>
+                    <option value="/mod/folder/view.php?id=448947&amp;forceview=1" >AR1 Soluciones en JS</option>
+                    <option value="/mod/resource/view.php?id=448948&amp;forceview=1" >AR1 Soluciones en PHP</option>
+                    <option value="/mod/url/view.php?id=396769&amp;forceview=1" >Video - como funciona una aplicación Web</option>
+                    <option value="/mod/resource/view.php?id=396770&amp;forceview=1" >Infografía - como funciona app web</option>
+                    <option value="/mod/resource/view.php?id=396773&amp;forceview=1" >Sitio Web completo de prueba</option>
+                    <option value="/mod/resource/view.php?id=396774&amp;forceview=1" >Exportación de Base de Datos de prueba</option>
+                    <option value="/mod/quiz/view.php?id=396775&amp;forceview=1" >Cuestionario sobre la sesión introducción a las aplicaciones Web</option>
+                    <option value="/mod/url/view.php?id=396777&amp;forceview=1" >Download XAMPP</option>
+                    <option value="/mod/url/view.php?id=396778&amp;forceview=1" >Download Visual Studio Code</option>
+                    <option value="/mod/url/view.php?id=396779&amp;forceview=1" >Microsoft Azure Dev Tools</option>
+                    <option value="/mod/url/view.php?id=396780&amp;forceview=1" >Video - Qué es Frontend y Backend, servidores web y clientes</option>
+                    <option value="/mod/url/view.php?id=396781&amp;forceview=1" >Video - La realidad del Full Stack Developer en el 2020</option>
+                    <option value="/mod/url/view.php?id=396782&amp;forceview=1" >CODE.org</option>
+                    <option value="/mod/url/view.php?id=396784&amp;forceview=1" >Video - Elementos básicos del lenguaje</option>
+                    <option value="/mod/resource/view.php?id=396785&amp;forceview=1" >2. Elementos basicos del lenguaje</option>
+                    <option value="/mod/url/view.php?id=396786&amp;forceview=1" >Video - Elementos básicos de PHP</option>
+                    <option value="/mod/resource/view.php?id=396787&amp;forceview=1" >2.1. Elementos básicos de PHP</option>
+                    <option value="/mod/url/view.php?id=396788&amp;forceview=1" >Video - Elementos básicos de JS</option>
+                    <option value="/mod/resource/view.php?id=396789&amp;forceview=1" >2.2. Elementos básicos de JS</option>
+                    <option value="/mod/assign/view.php?id=396793&amp;forceview=1" >AP3. Scripts de PHP secuenciales</option>
+                    <option value="/mod/folder/view.php?id=396794&amp;forceview=1" >AP3 Soluciones</option>
+                    <option value="/mod/assign/view.php?id=396795&amp;forceview=1" >AP4. Scripts de JS secuenciales</option>
+                    <option value="/mod/folder/view.php?id=396796&amp;forceview=1" >AP4 Soluciones</option>
+                    <option value="/mod/assign/view.php?id=396791&amp;forceview=1" >AP2. Algoritmos de problemas secuenciales</option>
+                    <option value="/mod/resource/view.php?id=396792&amp;forceview=1" >AP2. Algoritmos de problemas secuenciales Solucion</option>
+                    <option value="/mod/assign/view.php?id=396799&amp;forceview=1" >AP5. Scripts de JS y PHP secuenciales</option>
+                    <option value="/mod/url/view.php?id=396801&amp;forceview=1" >Video - ¿Qué es un DIAGRAMA DE FLUJO?</option>
+                    <option value="/mod/url/view.php?id=396802&amp;forceview=1" >Video - Creating a Simple Flowchart in Diagrams.net (Draw.io) Tutorial</option>
+                    <option value="/mod/url/view.php?id=396803&amp;forceview=1" >Video - Introducción al uso del software DFD</option>
+                    <option value="/mod/url/view.php?id=396804&amp;forceview=1" >Manual de DFD</option>
+                    <option value="/mod/resource/view.php?id=396805&amp;forceview=1" >DFD1.0</option>
+                    <option value="/mod/url/view.php?id=396807&amp;forceview=1" >Video - Estructuras de control</option>
+                    <option value="/mod/resource/view.php?id=396808&amp;forceview=1" >3. Estructuras de control</option>
+                    <option value="/mod/url/view.php?id=396809&amp;forceview=1" >Video - Estructuras de control en PHP</option>
+                    <option value="/mod/resource/view.php?id=396810&amp;forceview=1" >3.1. Estructuras de control en PHP</option>
+                    <option value="/mod/url/view.php?id=396811&amp;forceview=1" >Video - Estructuras de control en JS</option>
+                    <option value="/mod/resource/view.php?id=396812&amp;forceview=1" >3.2. Estructuras de control en JS</option>
+                    <option value="/mod/url/view.php?id=396813&amp;forceview=1" >Video - Métodos de entrada básicos</option>
+                    <option value="/mod/resource/view.php?id=396814&amp;forceview=1" >3.3. Métodos de entrada básicos</option>
+                    <option value="/mod/assign/view.php?id=396816&amp;forceview=1" >AP6. Algoritmos de problemas con control de flujo</option>
+                    <option value="/mod/resource/view.php?id=396817&amp;forceview=1" >AP6. Algoritmos de problemas control de flujo Solucion</option>
+                    <option value="/mod/assign/view.php?id=396818&amp;forceview=1" >AP7. Scripts de PHP con estructuras de control de flujo</option>
+                    <option value="/mod/url/view.php?id=396819&amp;forceview=1" >Video - Demostración método GET</option>
+                    <option value="/mod/folder/view.php?id=396820&amp;forceview=1" >AP7 Soluciones</option>
+                    <option value="/mod/assign/view.php?id=396821&amp;forceview=1" >AP8. Scripts de JS con estructuras de control de flujo</option>
+                    <option value="/mod/folder/view.php?id=396822&amp;forceview=1" >AP8 Soluciones</option>
+                    <option value="/mod/assign/view.php?id=433857&amp;forceview=1" >AEV1. Estructuras de control</option>
+                    <option value="/mod/assign/view.php?id=438400&amp;forceview=1" >AEV1. Estructuras de control extra</option>
+                    <option value="/mod/resource/view.php?id=442680&amp;forceview=1" >AEV1 Soluciones propuestas</option>
+                    <option value="/mod/assign/view.php?id=441162&amp;forceview=1" >Notas AEV1</option>
+                    <option value="/mod/assign/view.php?id=396825&amp;forceview=1" >AR3.1. Scripts de JS con estructuras de control de flujo. refuerzo</option>
+                    <option value="/mod/url/view.php?id=396827&amp;forceview=1" >w3schools - Learn PHP</option>
+                    <option value="/mod/url/view.php?id=396828&amp;forceview=1" >w3schools - Learn Javascript</option>
+                    <option value="/mod/url/view.php?id=396829&amp;forceview=1" >Código ASCII</option>
+                    <option value="/mod/url/view.php?id=396830&amp;forceview=1" >video - Lógica booleana</option>
+                    <option value="/mod/folder/view.php?id=396831&amp;forceview=1" >trabajado en clase</option>
+                    <option value="/mod/url/view.php?id=396833&amp;forceview=1" >Video - Estructuras de datos</option>
+                    <option value="/mod/resource/view.php?id=396834&amp;forceview=1" >4.Estructuras de datos</option>
+                    <option value="/mod/url/view.php?id=396835&amp;forceview=1" >Video - Estructuras de datos en JS</option>
+                    <option value="/mod/resource/view.php?id=396836&amp;forceview=1" >4.1.Estructuras de datos en JS</option>
+                    <option value="/mod/url/view.php?id=396837&amp;forceview=1" >Video - Estructuras de datos en PHP</option>
+                    <option value="/mod/resource/view.php?id=396838&amp;forceview=1" >4.2.Estructuras de datos en PHP</option>
+                    <option value="/mod/assign/view.php?id=396840&amp;forceview=1" > AP10. Scripts de JS. Arrays</option>
+                    <option value="/mod/folder/view.php?id=396841&amp;forceview=1" >AP10 Soluciones</option>
+                    <option value="/mod/assign/view.php?id=396842&amp;forceview=1" > AP11. Scripts de PHP. Arrays</option>
+                    <option value="/mod/folder/view.php?id=396843&amp;forceview=1" >AP11 Soluciones</option>
+                    <option value="/mod/assign/view.php?id=441627&amp;forceview=1" >AEV2. Estructuras de datos</option>
+                    <option value="/mod/resource/view.php?id=442681&amp;forceview=1" >AEV2 - Solución propuesta</option>
+                    <option value="/mod/resource/view.php?id=442241&amp;forceview=1" > AR4. Ejercicios arrays php asociativos</option>
+                    <option value="/mod/url/view.php?id=396847&amp;forceview=1" >w3schools - Arrays JS</option>
+                    <option value="/mod/url/view.php?id=396848&amp;forceview=1" >w3schools - Métodos de array JS</option>
+                    <option value="/mod/url/view.php?id=396849&amp;forceview=1" >MDN Web Docs - Arrays JS</option>
+                    <option value="/mod/url/view.php?id=396850&amp;forceview=1" >Eloquent Javascript - Arrays JS</option>
+                    <option value="/mod/url/view.php?id=396851&amp;forceview=1" >PHP.net - Funciones de Array</option>
+                    <option value="/mod/resource/view.php?id=436839&amp;forceview=1" >Trabajado en clase - Arrays</option>
+                    <option value="/mod/folder/view.php?id=438141&amp;forceview=1" >trabajado en clase</option>
+                    <option value="/mod/assign/view.php?id=443783&amp;forceview=1" >Prueba Evaluativa 1ª Evaluación GRUPO A</option>
+                    <option value="/mod/assign/view.php?id=443784&amp;forceview=1" >Prueba Evaluativa 1ª Evaluación GRUPO B</option>
+                    <option value="/mod/resource/view.php?id=444640&amp;forceview=1" >EX1 soluciones</option>
+                    <option value="/mod/assign/view.php?id=445594&amp;forceview=1" >Notas Examen 1ª Evaluación</option>
+                    <option value="/mod/assign/view.php?id=445599&amp;forceview=1" >Notas 1ª Evaluación</option>
+                    <option value="/mod/url/view.php?id=396853&amp;forceview=1" >Video - Funciones en JS</option>
+                    <option value="/mod/resource/view.php?id=396854&amp;forceview=1" >5.Funciones en JS</option>
+                    <option value="/mod/resource/view.php?id=396855&amp;forceview=1" >5.Funciones en PHP</option>
+                    <option value="/mod/assign/view.php?id=396857&amp;forceview=1" > AP12. Ejercicios de funciones en JS</option>
+                    <option value="/mod/assign/view.php?id=396859&amp;forceview=1" > AP13. Ejercicios de funciones en PHP</option>
+                    <option value="/mod/assign/view.php?id=396861&amp;forceview=1" > AP14. Ejercicios de funciones nativas de JS</option>
+                    <option value="/mod/assign/view.php?id=396863&amp;forceview=1" > AP15. Ejercicios de funciones nativas de PHP</option>
+                    <option value="/mod/url/view.php?id=396872&amp;forceview=1" >Diferencias clave entre var, let y const en JavaScript</option>
+                    <option value="/mod/url/view.php?id=396873&amp;forceview=1" >Hoisting in Modern JavaScript — let, const, and var</option>
+                    <option value="/mod/folder/view.php?id=440173&amp;forceview=1" >trabajado en clase</option>
+                    <option value="/mod/url/view.php?id=396899&amp;forceview=1" >Video - Manejo de ficheros en PHP</option>
+                    <option value="/mod/resource/view.php?id=396900&amp;forceview=1" >8. Manejo de ficheros en PHP</option>
+                    <option value="/mod/url/view.php?id=445307&amp;forceview=1" >Video - Manejo de formularios en PHP</option>
+                    <option value="/mod/resource/view.php?id=396903&amp;forceview=1" >8.2. Manejo de formularios en PHP</option>
+                    <option value="/mod/folder/view.php?id=445308&amp;forceview=1" >Código del ejemplo - Manejo de formularios en PHP</option>
+                    <option value="/mod/assign/view.php?id=447842&amp;forceview=1" >AP16 - Manejo de ficheros. INSERT</option>
+                    <option value="/mod/assign/view.php?id=448497&amp;forceview=1" >AP16 - Manejo de ficheros. DELETE</option>
+                    <option value="/mod/assign/view.php?id=448805&amp;forceview=1" >AP16 - Manejo de ficheros. UPDATE</option>
+                    <option value="/mod/assign/view.php?id=396906&amp;forceview=1" >AEV3 - Manejo de ficheros.</option>
+                    <option value="/mod/url/view.php?id=446180&amp;forceview=1" >Video - AEV3 - planteamiento de la actividad</option>
+                    <option value="/mod/resource/view.php?id=448806&amp;forceview=1" >AEV3 solucion final</option>
+                    <option value="/mod/url/view.php?id=396910&amp;forceview=1" >Video - PHP y HTML</option>
+                    <option value="/mod/url/view.php?id=396911&amp;forceview=1" >Video - Ejemplo PHP y HTML: Tabla de multiplicar</option>
+                    <option value="/mod/url/view.php?id=396912&amp;forceview=1" >Video - Leer y escribir ficheros en PHP</option>
+                    <option value="/mod/url/view.php?id=396914&amp;forceview=1" >Lista de reproducción - Formularios en PHP</option>
+                    <option value="/mod/url/view.php?id=396916&amp;forceview=1" >GET y POST en PHP</option>
+                    <option value="/mod/url/view.php?id=396917&amp;forceview=1" >Manejo de archivos en PHP</option>
+                    <option value="/mod/url/view.php?id=396918&amp;forceview=1" >Lectura de archivos en PHP</option>
+                    <option value="/mod/url/view.php?id=396919&amp;forceview=1" >Escritura de archivos en PHP</option>
+                    <option value="/mod/url/view.php?id=396921&amp;forceview=1" >Video - Parte I</option>
+                    <option value="/mod/url/view.php?id=396922&amp;forceview=1" >Video - Parte II</option>
+                    <option value="/mod/url/view.php?id=396923&amp;forceview=1" >Video - Parte III</option>
+                    <option value="/mod/resource/view.php?id=445441&amp;forceview=1" >trabajado en clase 29 11 2021</option>
+                    <option value="/mod/resource/view.php?id=445832&amp;forceview=1" >ejemplos de clase de manejo de ficheros</option>
+                    <option value="/mod/url/view.php?id=452042&amp;forceview=1" >Video - OOP en PHP. Conceptos básicos. (copia)</option>
+                    <option value="/mod/url/view.php?id=396884&amp;forceview=1" >Video - OOP en PHP. Herencia</option>
+                    <option value="/mod/url/view.php?id=396885&amp;forceview=1" >Video - OOP en PHP. Static.</option>
+                    <option value="/mod/url/view.php?id=396886&amp;forceview=1" >Video - OOP en PHP. Clases abstractas e Interfaces</option>
+                    <option value="/mod/resource/view.php?id=396887&amp;forceview=1" >6. OOP en PHP</option>
+                    <option value="/mod/url/view.php?id=396901&amp;forceview=1" >Video - Inclusiones y auto-loading en PHP</option>
+                    <option value="/mod/resource/view.php?id=396902&amp;forceview=1" >8.1. Inclusiones y auto loading</option>
+                    <option value="/mod/assign/view.php?id=396894&amp;forceview=1" > AP17. Scripts de OOP con PHP</option>
+                    <option value="/mod/assign/view.php?id=454927&amp;forceview=1" > AP19. CRUD PHP con OOP</option>
+                    <option value="/mod/resource/view.php?id=454924&amp;forceview=1" > AP19. CRUD con OOP solucion </option>
+                    <option value="/mod/assign/view.php?id=396891&amp;forceview=1" >AP20. OOP en PHP. Herencia</option>
+                    <option value="/mod/resource/view.php?id=459515&amp;forceview=1" >AP20. OOP en PHP. Herencia - solución</option>
+                    <option value="/mod/assign/view.php?id=451791&amp;forceview=1" > AEV4. Listado en PHP con OOP</option>
+                    <option value="/mod/url/view.php?id=396883&amp;forceview=1" >Video-Planteamiento de AEV4. Listado en PHP con OOP</option>
+                    <option value="/mod/resource/view.php?id=454275&amp;forceview=1" > AEV4. Listado en PHP con OOP solucion</option>
+                    <option value="/mod/assign/view.php?id=396889&amp;forceview=1" >AP21. OOP en PHP</option>
+                    <option value="/mod/resource/view.php?id=459929&amp;forceview=1" >AP21. OOP en PHP - solución</option>
+                    <option value="/mod/resource/view.php?id=396897&amp;forceview=1" >Aprenda Programación Orientada a Objetos (POO) en PHP</option>
+                    <option value="/mod/resource/view.php?id=449752&amp;forceview=1" >OOP trabajado en clase 10_01_2022</option>
+                    <option value="/mod/resource/view.php?id=450123&amp;forceview=1" >OOP trabajado en clase 11_01_2022</option>
+                    <option value="/mod/resource/view.php?id=451668&amp;forceview=1" >OOP trabajado en clase 18 01 2022</option>
+                    <option value="/mod/resource/view.php?id=451912&amp;forceview=1" >trabajado en clase 19 01 2022</option>
+                    <option value="/mod/assign/view.php?id=396938&amp;forceview=1" >Prueba Evaluativa 2ª Evaluación</option>
+                    <option value="/mod/resource/view.php?id=461005&amp;forceview=1" >Prueba Evaluativa 2ª Evaluación solucion</option>
+                    <option value="/mod/assign/view.php?id=396943&amp;forceview=1" >Notas Examen 2ª Evaluación</option>
+                    <option value="/mod/assign/view.php?id=396942&amp;forceview=1" >Notas 2ª EVALUACIÓN</option>
+                    <option value="/mod/resource/view.php?id=396925&amp;forceview=1" >9. Document Object Model</option>
+                    <option value="/mod/assign/view.php?id=396927&amp;forceview=1" >AP22 - Manejo de DOM</option>
+                    <option value="/mod/page/view.php?id=461550&amp;forceview=1" >Wordle</option>
+                    <option value="/mod/resource/view.php?id=461323&amp;forceview=1" >Wordle</option>
+                    <option value="/mod/assign/view.php?id=461540&amp;forceview=1" >Wordle - Ejercicio 2</option>
+                    <option value="/mod/assign/view.php?id=461541&amp;forceview=1" >Wordle - Ejercicio 3</option>
+                    <option value="/mod/assign/view.php?id=461542&amp;forceview=1" >Wordle - Ejercicio 4</option>
+                    <option value="/mod/assign/view.php?id=461545&amp;forceview=1" >Wordle - Ejercicio Final</option>
+                    <option value="/mod/assign/view.php?id=469165&amp;forceview=1" >AEV6 - Nota de Wordle</option>
+                    <option value="/mod/url/view.php?id=396934&amp;forceview=1" >w3schools - HTML DOM</option>
+                    <option value="/mod/url/view.php?id=396935&amp;forceview=1" >Mozilla - Introduction to the DOM</option>
+                    <option value="/mod/url/view.php?id=396936&amp;forceview=1" >Mozilla - Event Object</option>
+                    <option value="/mod/url/view.php?id=396937&amp;forceview=1" >javascript.info - Bubbling and capturing</option>
+                    <option value="/mod/resource/view.php?id=462656&amp;forceview=1" >AP22 - trabajado en clase</option>
+                    <option value="/mod/url/view.php?id=396947&amp;forceview=1" >Video - Acceso a datos en PHP. mysqli.</option>
+                    <option value="/mod/url/view.php?id=396948&amp;forceview=1" >Video - Paginación en PHP</option>
+                    <option value="/mod/url/view.php?id=396949&amp;forceview=1" >Video - Inserción, actualización y borrado de datos - Mysqli</option>
+                    <option value="/mod/resource/view.php?id=396950&amp;forceview=1" >10. Acceso a datos en PHP</option>
+                    <option value="/mod/url/view.php?id=396951&amp;forceview=1" >Video - Sesiones y cookies en PHP</option>
+                    <option value="/mod/url/view.php?id=396952&amp;forceview=1" >Video - Ejemplo de uso de Sesiones - Sistema de autenticación de usuarios</option>
+                    <option value="/mod/resource/view.php?id=396953&amp;forceview=1" >10.1. Sesiones y Cookies en PHP</option>
+                    <option value="/mod/folder/view.php?id=396954&amp;forceview=1" >Código del ejemplo sistema de autenticación de usuarios</option>
+                    <option value="/mod/url/view.php?id=396955&amp;forceview=1" >Video - Gestión de errores y excepciones en PHP</option>
+                    <option value="/mod/resource/view.php?id=396956&amp;forceview=1" >10.2. Gestión de errores y excepciones en PHP</option>
+                    <option value="/mod/url/view.php?id=464764&amp;forceview=1" >Objetos de datos de PHP</option>
+                    <option value="/mod/url/view.php?id=464767&amp;forceview=1" >PDO Consultas</option>
+                    <option value="/mod/url/view.php?id=464765&amp;forceview=1" >PDO Consultas - Tratamiento de resultados</option>
+                    <option value="/mod/url/view.php?id=464768&amp;forceview=1" >PDO Estamentos preparados</option>
+                    <option value="/mod/url/view.php?id=464769&amp;forceview=1" >PDO Estamentos preparados - Vinculación de parámetros</option>
+                    <option value="/mod/url/view.php?id=464770&amp;forceview=1" >PDO Estamentos preparados - Constantes pre-definidas</option>
+                    <option value="/mod/url/view.php?id=464771&amp;forceview=1" >La clase PDOException</option>
+                    <option value="/mod/url/view.php?id=464775&amp;forceview=1" >Transacciones en SQL </option>
+                    <option value="/mod/url/view.php?id=464772&amp;forceview=1" >Iniciar transacción</option>
+                    <option value="/mod/url/view.php?id=464773&amp;forceview=1" >Consignar transacción</option>
+                    <option value="/mod/url/view.php?id=464774&amp;forceview=1" >Revertir transacción</option>
+                    <option value="/mod/assign/view.php?id=396972&amp;forceview=1" >AP23 - Acceso a datos con PDO</option>
+                    <option value="/mod/folder/view.php?id=396973&amp;forceview=1" >AP23 - Acceso a Datos con PDO</option>
+                    <option value="/mod/assign/view.php?id=396974&amp;forceview=1" >AP24 - Modificación, inserción y eliminación de datos con PDO</option>
+                    <option value="/mod/resource/view.php?id=464811&amp;forceview=1" >AP24 - Modificación, inserción y eliminación de datos con PDO - Solución</option>
+                    <option value="/mod/assign/view.php?id=464858&amp;forceview=1" > AP25. Listado con PDO y OOP</option>
+                    <option value="/mod/resource/view.php?id=465284&amp;forceview=1" > AP25. Listado con PDO y OOP solución</option>
+                    <option value="/mod/assign/view.php?id=465441&amp;forceview=1" >AEV5 - Acceso a datos</option>
+                    <option value="/mod/resource/view.php?id=465692&amp;forceview=1" >AEV5 solución</option>
+                    <option value="/mod/assign/view.php?id=469408&amp;forceview=1" > AR9. App CRUD</option>
+                    <option value="/mod/url/view.php?id=396977&amp;forceview=1" >w3schools - PHP MySQL Database</option>
+                    <option value="/mod/url/view.php?id=396978&amp;forceview=1" >PHP.net - Extensión MySQL mejorada</option>
+                    <option value="/mod/url/view.php?id=396979&amp;forceview=1" >w3Schools.com - Cookies</option>
+                    <option value="/mod/url/view.php?id=396980&amp;forceview=1" >w3Schools.com - Sesiones</option>
+                    <option value="/mod/url/view.php?id=396981&amp;forceview=1" >PHPTheRightWay - Databases</option>
+                    <option value="/mod/url/view.php?id=470370&amp;forceview=1" >Camp Codes - Image Upload Using PDO in PHP</option>
+                    <option value="/mod/url/view.php?id=470407&amp;forceview=1" >Procesar múltiple CheckBox seleccionados con PHP</option>
+                    <option value="/mod/resource/view.php?id=464620&amp;forceview=1" >Trabajado_en_clase_14_03_2022</option>
+                    <option value="/mod/resource/view.php?id=465704&amp;forceview=1" >AEV5 con conexion herencia y conf externa</option>
+                    <option value="/mod/resource/view.php?id=466706&amp;forceview=1" >AEV5 paginación</option>
+                    <option value="/mod/resource/view.php?id=466860&amp;forceview=1" >AEV5 solución - paginación - sesiones</option>
+                    <option value="/mod/resource/view.php?id=467804&amp;forceview=1" >AEV5 solución - buscador</option>
+                    <option value="/mod/url/view.php?id=396983&amp;forceview=1" >Video - Peticiones asíncronas con JS y PHP</option>
+                    <option value="/mod/folder/view.php?id=396985&amp;forceview=1" >Peticiones asíncronas - código de ejemplo</option>
+                    <option value="/mod/resource/view.php?id=468604&amp;forceview=1" >Peticiones asíncronas y acceso a datos - código de ejemplo</option>
+                    <option value="/mod/assign/view.php?id=396993&amp;forceview=1" >AP26 - Ejercicios de AJAX/XHR</option>
+                    <option value="/mod/assign/view.php?id=468605&amp;forceview=1" >AP27 - Adaptación de app a AJAX/XHR</option>
+                    <option value="/mod/url/view.php?id=468715&amp;forceview=1" >Video - Planteamiento de AP27</option>
+                    <option value="/mod/resource/view.php?id=468926&amp;forceview=1" >AP27 - Adaptación de app a AJAX/XHR - Solución</option>
+                    <option value="/mod/url/view.php?id=468927&amp;forceview=1" >Video - AP27 - Adaptación de app a AJAX/XHR - Solución</option>
+                    <option value="/mod/assign/view.php?id=469024&amp;forceview=1" >AP28. XHR con JS, JSON y acceso a datos con PHP</option>
+                    <option value="/mod/resource/view.php?id=469117&amp;forceview=1" >AP28. XHR con JS, JSON y acceso a datos con PHP solución</option>
+                    <option value="/mod/url/view.php?id=396996&amp;forceview=1" >w3Schools.com - AJAX</option>
+                    <option value="/mod/url/view.php?id=396997&amp;forceview=1" >w3Schools.com - JS JSON</option>
+                    <option value="/mod/url/view.php?id=396998&amp;forceview=1" >php.net - PHP JSON</option>
+                    <option value="/mod/url/view.php?id=396999&amp;forceview=1" >developer.mozilla.org - Usando Objetos FormData</option>
+                    <option value="/mod/resource/view.php?id=467803&amp;forceview=1" >Trabajado en clase 05_04_2022AJAX</option>
+                    <option value="/mod/resource/view.php?id=468361&amp;forceview=1" >trabajado en clase AP26 11 04 2022</option>
+                    <option value="/mod/resource/view.php?id=468542&amp;forceview=1" >Trabajado en clase AP26 12 04 2022</option>
+                    <option value="/mod/assign/view.php?id=397001&amp;forceview=1" >Prueba Evaluativa 3ª Evaluación</option>
+                    <option value="/mod/resource/view.php?id=470171&amp;forceview=1" >Prueba Evaluativa 3ª Evaluación - Solución</option>
+                    <option value="/mod/assign/view.php?id=397003&amp;forceview=1" >Notas Programación 3ªEvaluacion</option>
+                    <option value="/mod/assign/view.php?id=397004&amp;forceview=1" >Notas FINALES Programación</option>
+        </select>
+            <noscript>
+                <input type="submit" class="btn btn-secondary" value="Ir">
+            </noscript>
+    </form>
+</div>
+
+</div>        </section>
+
+        <aside id="block-region-side-post" class="col-3 d-none d-md-block d-print-none  block-region" data-blockregion="side-post" data-droptarget="1"><div id="showsidebaricon"><i class="fa fa-3x fa-angle-left" aria-hidden="true"></i></div><a href="#sb-1" class="sr-only sr-only-focusable">Salta Navegación</a>
+
+<section id="inst4"
+     class=" block_navigation block  card mb-3"
+     role="navigation"
+     data-block="navigation"
+          aria-labelledby="instance-4-header"
+     >
+
+    <div class="card-body p-3">
+
+            <h5 id="instance-4-header" class="card-title d-inline">Navegación</h5>
+
+
+        <div class="card-text content mt-3">
+            <ul class="block_tree list" role="tree" data-ajax-loader="block_navigation/nav_loader"><li class="type_unknown depth_1 contains_branch" aria-labelledby="label_1_1"><p class="tree_item branch canexpand navigation_node" role="treeitem" aria-expanded="true" aria-owns="random6293fc4fe580c1_group" data-collapsible="false"><a tabindex="-1" id="label_1_1" href="https://www.floridaoberta.com/my/">Área personal</a></p><ul id="random6293fc4fe580c1_group" role="group"><li class="type_setting depth_2 item_with_icon" aria-labelledby="label_2_2"><p class="tree_item hasicon" role="treeitem"><a tabindex="-1" id="label_2_2" href="https://www.floridaoberta.com/?redirect=0"><i class="icon fa fa-home fa-fw navicon" aria-hidden="true"  ></i><span class="item-content-wrap">Inicio del sitio</span></a></p></li><li class="type_course depth_2 contains_branch" aria-labelledby="label_2_3"><p class="tree_item branch" role="treeitem" aria-expanded="false" aria-owns="random6293fc4fe580c3_group"><span tabindex="-1" id="label_2_3" title="Florida Oberta">Páginas del sitio</span></p><ul id="random6293fc4fe580c3_group" role="group" aria-hidden="true"><li class="type_unknown depth_3 item_with_icon" aria-labelledby="label_3_5"><p class="tree_item hasicon" role="treeitem"><a tabindex="-1" id="label_3_5" href="https://www.floridaoberta.com/blog/index.php"><i class="icon fa fa-fw fa-fw navicon" aria-hidden="true"  ></i><span class="item-content-wrap">Blogs del sitio</span></a></p></li><li class="type_custom depth_3 item_with_icon" aria-labelledby="label_3_6"><p class="tree_item hasicon" role="treeitem"><a tabindex="-1" id="label_3_6" href="https://www.floridaoberta.com/badges/view.php?type=1"><i class="icon fa fa-fw fa-fw navicon" aria-hidden="true"  ></i><span class="item-content-wrap">Insignias del sitio</span></a></p></li><li class="type_setting depth_3 item_with_icon" aria-labelledby="label_3_7"><p class="tree_item hasicon" role="treeitem"><a tabindex="-1" id="label_3_7" href="https://www.floridaoberta.com/tag/search.php"><i class="icon fa fa-fw fa-fw navicon" aria-hidden="true"  ></i><span class="item-content-wrap">Marcas</span></a></p></li><li class="type_custom depth_3 item_with_icon" aria-labelledby="label_3_8"><p class="tree_item hasicon" role="treeitem"><a tabindex="-1" id="label_3_8" href="https://www.floridaoberta.com/calendar/view.php?view=month&amp;course=7886"><i class="icon fa fa-calendar fa-fw navicon" aria-hidden="true"  ></i><span class="item-content-wrap">Calendario</span></a></p></li><li class="type_activity depth_3 item_with_icon" aria-labelledby="label_3_10"><p class="tree_item hasicon" role="treeitem"><a tabindex="-1" id="label_3_10" title="Foro" href="https://www.floridaoberta.com/mod/forum/view.php?id=6265"><img class="icon navicon" alt="Foro" title="Foro" src="https://www.floridaoberta.com/theme/image.php/adaptable/forum/1651591179/icon" /><span class="item-content-wrap">Novedades del sitio</span></a></p></li></ul></li><li class="type_system depth_2 contains_branch" aria-labelledby="label_2_11"><p class="tree_item branch" role="treeitem" aria-expanded="true" aria-owns="random6293fc4fe580c9_group"><span tabindex="-1" id="label_2_11">Mis cursos</span></p><ul id="random6293fc4fe580c9_group" role="group"><li class="type_unknown depth_3 contains_branch" aria-labelledby="label_3_12"><p class="tree_item branch" role="treeitem" aria-expanded="true" aria-owns="random6293fc4fe580c10_group"><span tabindex="-1" id="label_3_12">2021-2022</span></p><ul id="random6293fc4fe580c10_group" role="group"><li class="type_unknown depth_4 contains_branch" aria-labelledby="label_4_13"><p class="tree_item branch" role="treeitem" aria-expanded="true" aria-owns="random6293fc4fe580c11_group"><span tabindex="-1" id="label_4_13">Formación Profesional - Ciclos Formativos</span></p><ul id="random6293fc4fe580c11_group" role="group"><li class="type_unknown depth_5 contains_branch" aria-labelledby="label_5_14"><p class="tree_item branch" role="treeitem" aria-expanded="true" aria-owns="random6293fc4fe580c12_group"><span tabindex="-1" id="label_5_14"> Ciclos Formativos Presenciales</span></p><ul id="random6293fc4fe580c12_group" role="group"><li class="type_unknown depth_6 contains_branch" aria-labelledby="label_6_15"><p class="tree_item branch" role="treeitem" aria-expanded="true" aria-owns="random6293fc4fe580c13_group"><span tabindex="-1" id="label_6_15">DAW</span></p><ul id="random6293fc4fe580c13_group" role="group"><li class="type_unknown depth_7 contains_branch" aria-labelledby="label_7_16"><p class="tree_item branch canexpand" role="treeitem" aria-expanded="true" aria-owns="random6293fc4fe580c14_group"><span tabindex="-1" id="label_7_16">1º DAW</span></p><ul id="random6293fc4fe580c14_group" role="group"><li class="type_course depth_8 contains_branch" aria-labelledby="label_8_17"><p class="tree_item branch" role="treeitem" id="expandable_branch_20_7885" aria-expanded="false" data-requires-ajax="true" data-loaded="false" data-node-id="expandable_branch_20_7885" data-node-key="7885" data-node-type="20"><a tabindex="-1" id="label_8_17" title="21/22 -1DAW - Lenguajes de Marcas y Sist. de Gestión de Inf." href="https://www.floridaoberta.com/course/view.php?id=7885">21/22 -1DAW - Lenguajes de Marcas y Sist. de Gesti...</a></p></li><li class="type_course depth_8 contains_branch" aria-labelledby="label_8_18"><p class="tree_item branch" role="treeitem" id="expandable_branch_20_7881" aria-expanded="false" data-requires-ajax="true" data-loaded="false" data-node-id="expandable_branch_20_7881" data-node-key="7881" data-node-type="20"><a tabindex="-1" id="label_8_18" title="21/22 -1DAW-Bases de datos" href="https://www.floridaoberta.com/course/view.php?id=7881">21/22 -1DAW-Bases de datos</a></p></li><li class="type_course depth_8 contains_branch" aria-labelledby="label_8_19"><p class="tree_item branch" role="treeitem" id="expandable_branch_20_7882" aria-expanded="false" data-requires-ajax="true" data-loaded="false" data-node-id="expandable_branch_20_7882" data-node-key="7882" data-node-type="20"><a tabindex="-1" id="label_8_19" title="21/22 -1DAW-Entornos de Desarrollo" href="https://www.floridaoberta.com/course/view.php?id=7882">21/22 -1DAW-Entornos de Desarrollo</a></p></li><li class="type_course depth_8 contains_branch" aria-labelledby="label_8_20"><p class="tree_item branch" role="treeitem" id="expandable_branch_20_7884" aria-expanded="false" data-requires-ajax="true" data-loaded="false" data-node-id="expandable_branch_20_7884" data-node-key="7884" data-node-type="20"><a tabindex="-1" id="label_8_20" title="21/22 -1DAW-Inglés I" href="https://www.floridaoberta.com/course/view.php?id=7884">21/22 -1DAW-Inglés I</a></p></li><li class="type_course depth_8 contains_branch" aria-labelledby="label_8_21"><p class="tree_item branch canexpand" role="treeitem" aria-expanded="true" aria-owns="random6293fc4fe580c15_group"><a tabindex="-1" id="label_8_21" title="21/22 -1DAW-Programación" href="https://www.floridaoberta.com/course/view.php?id=7886">21/22 -1DAW-Programación</a></p><ul id="random6293fc4fe580c15_group" role="group"><li class="type_container depth_9 contains_branch" aria-labelledby="label_9_22"><p class="tree_item branch" role="treeitem" aria-expanded="false" aria-owns="random6293fc4fe580c16_group"><a tabindex="-1" id="label_9_22" href="https://www.floridaoberta.com/user/index.php?id=7886">Participantes</a></p><ul id="random6293fc4fe580c16_group" role="group" aria-hidden="true"><li class="type_setting depth_10 item_with_icon" aria-labelledby="label_10_23"><p class="tree_item hasicon" role="treeitem"><a tabindex="-1" id="label_10_23" href="https://www.floridaoberta.com/blog/index.php?courseid=7886"><i class="icon fa fa-fw fa-fw navicon" aria-hidden="true"  ></i><span class="item-content-wrap">Blogs de curso</span></a></p></li><li class="type_user depth_10 item_with_icon" aria-labelledby="label_10_24"><p class="tree_item hasicon" role="treeitem"><a tabindex="-1" id="label_10_24" href="https://www.floridaoberta.com/user/view.php?id=23408&amp;course=7886"><i class="icon fa fa-fw fa-fw navicon" aria-hidden="true"  ></i><span class="item-content-wrap">RAUL SALES HERRANZ</span></a></p></li></ul></li><li class="type_setting depth_9 item_with_icon" aria-labelledby="label_9_25"><p class="tree_item hasicon" role="treeitem"><a tabindex="-1" id="label_9_25" href="https://www.floridaoberta.com/badges/view.php?type=2&amp;id=7886"><i class="icon fa fa-shield fa-fw navicon"  title="Insignias" aria-label="Insignias"></i><span class="item-content-wrap">Insignias</span></a></p></li><li class="type_setting depth_9 item_with_icon" aria-labelledby="label_9_26"><p class="tree_item hasicon" role="treeitem"><a tabindex="-1" id="label_9_26" href="https://www.floridaoberta.com/admin/tool/lp/coursecompetencies.php?courseid=7886"><i class="icon fa fa-check-square-o fa-fw navicon" aria-hidden="true"  ></i><span class="item-content-wrap">Competencias</span></a></p></li><li class="type_setting depth_9 item_with_icon" aria-labelledby="label_9_27"><p class="tree_item hasicon" role="treeitem"><a tabindex="-1" id="label_9_27" href="https://www.floridaoberta.com/grade/report/index.php?id=7886"><i class="icon fa fa-table fa-fw navicon" aria-hidden="true"  ></i><span class="item-content-wrap">Calificaciones</span></a></p></li><li class="type_structure depth_9 contains_branch" aria-labelledby="label_9_28"><p class="tree_item branch" role="treeitem" id="expandable_branch_30_75312" aria-expanded="false" data-requires-ajax="true" data-loaded="false" data-node-id="expandable_branch_30_75312" data-node-key="75312" data-node-type="30"><a tabindex="-1" id="label_9_28" href="https://www.floridaoberta.com/course/view.php?id=7886#section-0">General</a></p></li><li class="type_structure depth_9 contains_branch" aria-labelledby="label_9_29"><p class="tree_item branch" role="treeitem" id="expandable_branch_30_85896" aria-expanded="false" data-requires-ajax="true" data-loaded="false" data-node-id="expandable_branch_30_85896" data-node-key="85896" data-node-type="30"><a tabindex="-1" id="label_9_29" href="https://www.floridaoberta.com/course/view.php?id=7886#section-1">Sesiones de Refuerzo</a></p></li><li class="type_structure depth_9 contains_branch" aria-labelledby="label_9_30"><p class="tree_item branch" role="treeitem" id="expandable_branch_30_75314" aria-expanded="false" data-requires-ajax="true" data-loaded="false" data-node-id="expandable_branch_30_75314" data-node-key="75314" data-node-type="30"><a tabindex="-1" id="label_9_30" href="https://www.floridaoberta.com/course/view.php?id=7886#section-3">1. Introducción al desarrollo de Aplicaciones Web.</a></p></li><li class="type_structure depth_9 contains_branch" aria-labelledby="label_9_31"><p class="tree_item branch" role="treeitem" id="expandable_branch_30_75315" aria-expanded="false" data-requires-ajax="true" data-loaded="false" data-node-id="expandable_branch_30_75315" data-node-key="75315" data-node-type="30"><a tabindex="-1" id="label_9_31" href="https://www.floridaoberta.com/course/view.php?id=7886#section-4">2. Elementos básicos del lenguaje</a></p></li><li class="type_structure depth_9 contains_branch" aria-labelledby="label_9_32"><p class="tree_item branch" role="treeitem" id="expandable_branch_30_75316" aria-expanded="false" data-requires-ajax="true" data-loaded="false" data-node-id="expandable_branch_30_75316" data-node-key="75316" data-node-type="30"><a tabindex="-1" id="label_9_32" href="https://www.floridaoberta.com/course/view.php?id=7886#section-5">3. Estructuras de control.</a></p></li><li class="type_structure depth_9 contains_branch" aria-labelledby="label_9_33"><p class="tree_item branch" role="treeitem" id="expandable_branch_30_75317" aria-expanded="false" data-requires-ajax="true" data-loaded="false" data-node-id="expandable_branch_30_75317" data-node-key="75317" data-node-type="30"><a tabindex="-1" id="label_9_33" href="https://www.floridaoberta.com/course/view.php?id=7886#section-6">4. Estructuras de datos</a></p></li><li class="type_structure depth_9 contains_branch" aria-labelledby="label_9_34"><p class="tree_item branch" role="treeitem" id="expandable_branch_30_75319" aria-expanded="false" data-requires-ajax="true" data-loaded="false" data-node-id="expandable_branch_30_75319" data-node-key="75319" data-node-type="30"><a tabindex="-1" id="label_9_34" href="https://www.floridaoberta.com/course/view.php?id=7886#section-7">1ª EVALUACIÓN</a></p></li><li class="type_structure depth_9 contains_branch" aria-labelledby="label_9_35"><p class="tree_item branch" role="treeitem" id="expandable_branch_30_75318" aria-expanded="false" data-requires-ajax="true" data-loaded="false" data-node-id="expandable_branch_30_75318" data-node-key="75318" data-node-type="30"><a tabindex="-1" id="label_9_35" href="https://www.floridaoberta.com/course/view.php?id=7886#section-8">5. Funciones y métodos</a></p></li><li class="type_structure depth_9 contains_branch" aria-labelledby="label_9_36"><p class="tree_item branch" role="treeitem" id="expandable_branch_30_75321" aria-expanded="false" data-requires-ajax="true" data-loaded="false" data-node-id="expandable_branch_30_75321" data-node-key="75321" data-node-type="30"><a tabindex="-1" id="label_9_36" href="https://www.floridaoberta.com/course/view.php?id=7886#section-9">6. Generación dinámica de HTML.</a></p></li><li class="type_structure depth_9 contains_branch" aria-labelledby="label_9_37"><p class="tree_item branch" role="treeitem" id="expandable_branch_30_75320" aria-expanded="false" data-requires-ajax="true" data-loaded="false" data-node-id="expandable_branch_30_75320" data-node-key="75320" data-node-type="30"><a tabindex="-1" id="label_9_37" href="https://www.floridaoberta.com/course/view.php?id=7886#section-10">7. Programación Orientada a Objetos</a></p></li><li class="type_structure depth_9 contains_branch" aria-labelledby="label_9_38"><p class="tree_item branch" role="treeitem" id="expandable_branch_30_79359" aria-expanded="false" data-requires-ajax="true" data-loaded="false" data-node-id="expandable_branch_30_79359" data-node-key="79359" data-node-type="30"><a tabindex="-1" id="label_9_38" href="https://www.floridaoberta.com/course/view.php?id=7886#section-11">2ª EVALUACIÓN</a></p></li><li class="type_structure depth_9 contains_branch" aria-labelledby="label_9_39"><p class="tree_item branch" role="treeitem" id="expandable_branch_30_75322" aria-expanded="false" data-requires-ajax="true" data-loaded="false" data-node-id="expandable_branch_30_75322" data-node-key="75322" data-node-type="30"><a tabindex="-1" id="label_9_39" href="https://www.floridaoberta.com/course/view.php?id=7886#section-12">8. Document Object Model</a></p></li><li class="type_structure depth_9 contains_branch" aria-labelledby="label_9_40"><p class="tree_item branch" role="treeitem" id="expandable_branch_30_79360" aria-expanded="false" data-requires-ajax="true" data-loaded="false" data-node-id="expandable_branch_30_79360" data-node-key="79360" data-node-type="30"><a tabindex="-1" id="label_9_40" href="https://www.floridaoberta.com/course/view.php?id=7886#section-13">9. Acceso a datos.</a></p></li><li class="type_structure depth_9 contains_branch" aria-labelledby="label_9_41"><p class="tree_item branch" role="treeitem" aria-expanded="true" aria-owns="random6293fc4fe580c22_group"><a tabindex="-1" id="label_9_41" href="https://www.floridaoberta.com/course/view.php?id=7886#section-14">10. Peticiones Asíncronas</a></p><ul id="random6293fc4fe580c22_group" role="group"><li class="type_activity depth_10 item_with_icon" aria-labelledby="label_10_43"><p class="tree_item hasicon" role="treeitem"><a href="https://www.floridaoberta.com/mod/url/view.php?id=396983" id="label_10_43" class=""  tabindex="-1"  title="URL" ><img class="icon navicon" alt="URL" title="URL" src="https://www.floridaoberta.com/theme/image.php/adaptable/url/1651591179/icon" /><span class="item-content-wrap">Video - Peticiones asíncronas con JS y PHP</span></a></p></li><li class="type_activity depth_10 item_with_icon current_branch" aria-labelledby="label_10_44"><p class="tree_item hasicon active_tree_node" role="treeitem"><a href="https://www.floridaoberta.com/mod/resource/view.php?id=396984" id="label_10_44" class=""  tabindex="-1"  title="Archivo" ><img class="icon navicon" alt="Archivo" title="Archivo" src="https://www.floridaoberta.com/theme/image.php/adaptable/core/1651591179/f/pdf-24" /><span class="item-content-wrap">11. Peticiones asíncronas con PHP y JS</span></a></p></li><li class="type_activity depth_10 item_with_icon" aria-labelledby="label_10_45"><p class="tree_item hasicon" role="treeitem"><a tabindex="-1" id="label_10_45" title="Carpeta" href="https://www.floridaoberta.com/mod/folder/view.php?id=396985"><img class="icon navicon" alt="Carpeta" title="Carpeta" src="https://www.floridaoberta.com/theme/image.php/adaptable/folder/1651591179/icon" /><span class="item-content-wrap">Peticiones asíncronas - código de ejemplo</span></a></p></li><li class="type_activity depth_10 item_with_icon" aria-labelledby="label_10_46"><p class="tree_item hasicon" role="treeitem"><a tabindex="-1" id="label_10_46" title="Archivo" href="https://www.floridaoberta.com/mod/resource/view.php?id=468604"><img class="icon navicon" alt="Archivo" title="Archivo" src="https://www.floridaoberta.com/theme/image.php/adaptable/core/1651591179/f/archive-24" /><span class="item-content-wrap">Peticiones asíncronas y acceso a datos - código de...</span></a></p></li><li class="type_activity depth_10 item_with_icon" aria-labelledby="label_10_48"><p class="tree_item hasicon" role="treeitem"><a tabindex="-1" id="label_10_48" title="Tarea" href="https://www.floridaoberta.com/mod/assign/view.php?id=396993"><img class="icon navicon" alt="Tarea" title="Tarea" src="https://www.floridaoberta.com/theme/image.php/adaptable/assign/1651591179/icon" /><span class="item-content-wrap">AP26 - Ejercicios de AJAX/XHR</span></a></p></li><li class="type_activity depth_10 item_with_icon" aria-labelledby="label_10_49"><p class="tree_item hasicon" role="treeitem"><a tabindex="-1" id="label_10_49" title="Tarea" href="https://www.floridaoberta.com/mod/assign/view.php?id=468605"><img class="icon navicon" alt="Tarea" title="Tarea" src="https://www.floridaoberta.com/theme/image.php/adaptable/assign/1651591179/icon" /><span class="item-content-wrap">AP27 - Adaptación de app a AJAX/XHR</span></a></p></li><li class="type_activity depth_10 item_with_icon" aria-labelledby="label_10_50"><p class="tree_item hasicon" role="treeitem"><a href="https://www.floridaoberta.com/mod/url/view.php?id=468715" id="label_10_50" class=""  tabindex="-1"  title="URL" ><img class="icon navicon" alt="URL" title="URL" src="https://www.floridaoberta.com/theme/image.php/adaptable/url/1651591179/icon" /><span class="item-content-wrap">Video - Planteamiento de AP27</span></a></p></li><li class="type_activity depth_10 item_with_icon" aria-labelledby="label_10_51"><p class="tree_item hasicon" role="treeitem"><a tabindex="-1" id="label_10_51" title="Archivo" href="https://www.floridaoberta.com/mod/resource/view.php?id=468926"><img class="icon navicon" alt="Archivo" title="Archivo" src="https://www.floridaoberta.com/theme/image.php/adaptable/core/1651591179/f/archive-24" /><span class="item-content-wrap">AP27 - Adaptación de app a AJAX/XHR - Solución</span></a></p></li><li class="type_activity depth_10 item_with_icon" aria-labelledby="label_10_52"><p class="tree_item hasicon" role="treeitem"><a href="https://www.floridaoberta.com/mod/url/view.php?id=468927" id="label_10_52" class=""  tabindex="-1"  title="URL" ><img class="icon navicon" alt="URL" title="URL" src="https://www.floridaoberta.com/theme/image.php/adaptable/url/1651591179/icon" /><span class="item-content-wrap">Video - AP27 - Adaptación de app a AJAX/XHR - Solución</span></a></p></li><li class="type_activity depth_10 item_with_icon" aria-labelledby="label_10_53"><p class="tree_item hasicon" role="treeitem"><a tabindex="-1" id="label_10_53" title="Tarea" href="https://www.floridaoberta.com/mod/assign/view.php?id=469024"><img class="icon navicon" alt="Tarea" title="Tarea" src="https://www.floridaoberta.com/theme/image.php/adaptable/assign/1651591179/icon" /><span class="item-content-wrap">AP28. XHR con JS, JSON y acceso a datos con PHP</span></a></p></li><li class="type_activity depth_10 item_with_icon" aria-labelledby="label_10_54"><p class="tree_item hasicon" role="treeitem"><a tabindex="-1" id="label_10_54" title="Archivo" href="https://www.floridaoberta.com/mod/resource/view.php?id=469117"><img class="icon navicon" alt="Archivo" title="Archivo" src="https://www.floridaoberta.com/theme/image.php/adaptable/core/1651591179/f/archive-24" /><span class="item-content-wrap">AP28. XHR con JS, JSON y acceso a datos con PHP so...</span></a></p></li><li class="type_activity depth_10 item_with_icon" aria-labelledby="label_10_63"><p class="tree_item hasicon" role="treeitem"><a href="https://www.floridaoberta.com/mod/url/view.php?id=396996" id="label_10_63" class=""  tabindex="-1"  title="URL" ><img class="icon navicon" alt="URL" title="URL" src="https://www.floridaoberta.com/theme/image.php/adaptable/url/1651591179/icon" /><span class="item-content-wrap">w3Schools.com - AJAX</span></a></p></li><li class="type_activity depth_10 item_with_icon" aria-labelledby="label_10_64"><p class="tree_item hasicon" role="treeitem"><a href="https://www.floridaoberta.com/mod/url/view.php?id=396997" id="label_10_64" class=""  tabindex="-1"  title="URL" ><img class="icon navicon" alt="URL" title="URL" src="https://www.floridaoberta.com/theme/image.php/adaptable/url/1651591179/icon" /><span class="item-content-wrap">w3Schools.com - JS JSON</span></a></p></li><li class="type_activity depth_10 item_with_icon" aria-labelledby="label_10_65"><p class="tree_item hasicon" role="treeitem"><a href="https://www.floridaoberta.com/mod/url/view.php?id=396998" id="label_10_65" class=""  tabindex="-1"  title="URL" ><img class="icon navicon" alt="URL" title="URL" src="https://www.floridaoberta.com/theme/image.php/adaptable/core/1651591179/f/sourcecode-24" /><span class="item-content-wrap">php.net - PHP JSON</span></a></p></li><li class="type_activity depth_10 item_with_icon" aria-labelledby="label_10_66"><p class="tree_item hasicon" role="treeitem"><a href="https://www.floridaoberta.com/mod/url/view.php?id=396999" id="label_10_66" class=""  tabindex="-1"  title="URL" ><img class="icon navicon" alt="URL" title="URL" src="https://www.floridaoberta.com/theme/image.php/adaptable/url/1651591179/icon" /><span class="item-content-wrap">developer.mozilla.org - Usando Objetos FormData</span></a></p></li><li class="type_activity depth_10 item_with_icon" aria-labelledby="label_10_67"><p class="tree_item hasicon" role="treeitem"><a tabindex="-1" id="label_10_67" title="Archivo" href="https://www.floridaoberta.com/mod/resource/view.php?id=467803"><img class="icon navicon" alt="Archivo" title="Archivo" src="https://www.floridaoberta.com/theme/image.php/adaptable/core/1651591179/f/archive-24" /><span class="item-content-wrap">Trabajado en clase 05_04_2022AJAX</span></a></p></li><li class="type_activity depth_10 item_with_icon" aria-labelledby="label_10_68"><p class="tree_item hasicon" role="treeitem"><a tabindex="-1" id="label_10_68" title="Archivo" href="https://www.floridaoberta.com/mod/resource/view.php?id=468361"><img class="icon navicon" alt="Archivo" title="Archivo" src="https://www.floridaoberta.com/theme/image.php/adaptable/core/1651591179/f/archive-24" /><span class="item-content-wrap">trabajado en clase AP26 11 04 2022</span></a></p></li><li class="type_activity depth_10 item_with_icon" aria-labelledby="label_10_69"><p class="tree_item hasicon" role="treeitem"><a tabindex="-1" id="label_10_69" title="Archivo" href="https://www.floridaoberta.com/mod/resource/view.php?id=468542"><img class="icon navicon" alt="Archivo" title="Archivo" src="https://www.floridaoberta.com/theme/image.php/adaptable/core/1651591179/f/archive-24" /><span class="item-content-wrap">Trabajado en clase AP26 12 04 2022</span></a></p></li></ul></li><li class="type_structure depth_9 contains_branch" aria-labelledby="label_9_70"><p class="tree_item branch" role="treeitem" id="expandable_branch_30_79362" aria-expanded="false" data-requires-ajax="true" data-loaded="false" data-node-id="expandable_branch_30_79362" data-node-key="79362" data-node-type="30"><a tabindex="-1" id="label_9_70" href="https://www.floridaoberta.com/course/view.php?id=7886#section-15">3ª EVALUACIÓN</a></p></li></ul></li><li class="type_course depth_8 contains_branch" aria-labelledby="label_8_71"><p class="tree_item branch" role="treeitem" id="expandable_branch_20_7889" aria-expanded="false" data-requires-ajax="true" data-loaded="false" data-node-id="expandable_branch_20_7889" data-node-key="7889" data-node-type="20"><a tabindex="-1" id="label_8_71" title="21/22 -1DAW-Proyecto Integrado" href="https://www.floridaoberta.com/course/view.php?id=7889">21/22 -1DAW-Proyecto Integrado</a></p></li><li class="type_course depth_8 contains_branch" aria-labelledby="label_8_72"><p class="tree_item branch" role="treeitem" id="expandable_branch_20_7887" aria-expanded="false" data-requires-ajax="true" data-loaded="false" data-node-id="expandable_branch_20_7887" data-node-key="7887" data-node-type="20"><a tabindex="-1" id="label_8_72" title="21/22 -1DAW-Sistemas Informáticos" href="https://www.floridaoberta.com/course/view.php?id=7887">21/22 -1DAW-Sistemas Informáticos</a></p></li><li class="type_course depth_8 contains_branch" aria-labelledby="label_8_73"><p class="tree_item branch" role="treeitem" id="expandable_branch_20_7888" aria-expanded="false" data-requires-ajax="true" data-loaded="false" data-node-id="expandable_branch_20_7888" data-node-key="7888" data-node-type="20"><a tabindex="-1" id="label_8_73" title="21/22 -1DAW-Tutoría" href="https://www.floridaoberta.com/course/view.php?id=7888">21/22 -1DAW-Tutoría</a></p></li></ul></li></ul></li></ul></li></ul></li></ul></li></ul></li><li class="type_system depth_2 contains_branch" aria-labelledby="label_2_74"><p class="tree_item branch" role="treeitem" id="expandable_branch_0_courses" aria-expanded="false" data-requires-ajax="true" data-loaded="false" data-node-id="expandable_branch_0_courses" data-node-key="courses" data-node-type="0"><a tabindex="-1" id="label_2_74" href="https://www.floridaoberta.com/course/index.php">Cursos</a></p></li><li class="type_custom depth_2 item_with_icon" aria-labelledby="label_2_75"><p class="tree_item hasicon" role="treeitem"><a tabindex="-1" id="label_2_75" href="https://www.floridaoberta.com/local/calendar/index.php"><i class="icon fa fa-fw fa-fw navicon" aria-hidden="true"  ></i><span class="item-content-wrap">Calendaraio_local</span></a></p></li><li class="type_custom depth_2 item_with_icon" aria-labelledby="label_2_76"><p class="tree_item hasicon" role="treeitem"><a tabindex="-1" id="label_2_76" href="https://www.floridaoberta.com/local/horarios/student_view.php?userid=23408"><i class="icon fa fa-fw fa-fw navicon" aria-hidden="true"  ></i><span class="item-content-wrap">Horarios</span></a></p></li></ul></li></ul>
+            <div class="footer"></div>
+            
+        </div>
+
+    </div>
+
+</section>
+
+  <span id="sb-1"></span></aside>    </div>
+</div>
+
+<div
+    id="message-drawer-6293fc5031d4b6293fc4fe580c47"
+    class="message-app drawer bg-light hidden"
+    aria-expanded="false"
+    aria-hidden="true"
+    data-region="message-drawer"
+    role="region"
+>
+    <div class="header-container position-relative" data-region="header-container">
+        <div class="hidden border-bottom px-2 py-3" aria-hidden="true" data-region="view-contacts">
+            <div class="d-flex align-items-center">
+                <div class="align-self-stretch">
+                    <a class="h-100 d-flex align-items-center mr-2" href="#" data-route-back role="button">
+                        <div class="icon-back-in-drawer">
+                            <span class="dir-rtl-hide"><i class="icon fa fa-chevron-left fa-fw " aria-hidden="true"  ></i></span>
+                            <span class="dir-ltr-hide"><i class="icon fa fa-chevron-right fa-fw " aria-hidden="true"  ></i></span>
+                        </div>
+                        <div class="icon-back-in-app">
+                            <span class="dir-rtl-hide"><i class="icon fa fa-times fa-fw " aria-hidden="true"  ></i></span>
+                        </div>                    </a>
+                </div>
+                <div>
+                    Contactos
+                </div>
+                <div class="ml-auto">
+                    <a href="#" data-route="view-search" role="button" aria-label="Búsqueda">
+                        <i class="icon fa fa-search fa-fw " aria-hidden="true"  ></i>
+                    </a>
+                </div>
+            </div>
+        </div>        
+        <div
+            class="hidden bg-white position-relative border-bottom px-2 py-2"
+            aria-hidden="true"
+            data-region="view-conversation"
+        >
+            <div class="hidden" data-region="header-content"></div>
+            <div class="hidden" data-region="header-edit-mode">
+                
+                <div class="d-flex p-2 align-items-center">
+                    Mensajes seleccionados:
+                    <span class="ml-1" data-region="message-selected-court">1</span>
+                    <button type="button" class="ml-auto close" aria-label="Cancelar selección de mensaje"
+                        data-action="cancel-edit-mode">
+                            <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            </div>
+            <div data-region="header-placeholder">
+                <div class="d-flex">
+                    <div
+                        class="ml-2 rounded-circle bg-pulse-grey align-self-center"
+                        style="height: 38px; width: 38px"
+                    >
+                    </div>
+                    <div class="ml-2 " style="flex: 1">
+                        <div
+                            class="mt-1 bg-pulse-grey w-75"
+                            style="height: 16px;"
+                        >
+                        </div>
+                    </div>
+                    <div
+                        class="ml-2 bg-pulse-grey align-self-center"
+                        style="height: 16px; width: 20px"
+                    >
+                    </div>
+                </div>
+            </div>
+            <div
+                class="hidden position-absolute"
+                data-region="confirm-dialogue-container"
+                style="top: 0; bottom: -1px; right: 0; left: 0; background: rgba(0,0,0,0.3);"
+            ></div>
+        </div>        <div class="border-bottom px-2 py-3" aria-hidden="false"  data-region="view-overview">
+            <div class="d-flex align-items-center">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text pr-0 bg-white">
+                            <i class="icon fa fa-search fa-fw " aria-hidden="true"  ></i>
+                        </span>
+                    </div>
+                    <input
+                        type="text"
+                        class="form-control border-left-0"
+                        placeholder="Búsqueda"
+                        aria-label="Búsqueda"
+                        data-region="view-overview-search-input"
+                    >
+                </div>
+                <div class="ml-2">
+                    <a
+                        href="#"
+                        data-route="view-settings"
+                        data-route-param="23408"
+                        aria-label="Ajustes"
+                        role="button"
+                    >
+                        <i class="icon fa fa-cog fa-fw " aria-hidden="true"  ></i>
+                    </a>
+                </div>
+            </div>
+            <div class="text-right mt-3">
+                <a href="#" data-route="view-contacts" role="button">
+                    <i class="icon fa fa-user fa-fw " aria-hidden="true"  ></i>
+                    Contactos
+                    <span class="badge bg-primary ml-2 hidden"
+                    data-region="contact-request-count"
+                    aria-label="Hay 0 solicitudes de contacto pendientes">
+                        0
+                    </span>
+                </a>
+            </div>
+        </div>
+        
+        <div class="hidden border-bottom px-2 py-3 view-search"  aria-hidden="true" data-region="view-search">
+            <div class="d-flex align-items-center">
+                <a
+                    class="mr-2 align-self-stretch d-flex align-items-center"
+                    href="#"
+                    data-route-back
+                    data-action="cancel-search"
+                    role="button"
+                >
+                    <div class="icon-back-in-drawer">
+                        <span class="dir-rtl-hide"><i class="icon fa fa-chevron-left fa-fw " aria-hidden="true"  ></i></span>
+                        <span class="dir-ltr-hide"><i class="icon fa fa-chevron-right fa-fw " aria-hidden="true"  ></i></span>
+                    </div>
+                    <div class="icon-back-in-app">
+                        <span class="dir-rtl-hide"><i class="icon fa fa-times fa-fw " aria-hidden="true"  ></i></span>
+                    </div>                </a>
+                <div class="input-group">
+                    <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Búsqueda"
+                        aria-label="Búsqueda"
+                        data-region="search-input"
+                    >
+                    <div class="input-group-append">
+                        <button
+                            class="btn btn-outline-secondary"
+                            type="button"
+                            data-action="search"
+                            aria-label="Búsqueda"
+                        >
+                            <span data-region="search-icon-container">
+                                <i class="icon fa fa-search fa-fw " aria-hidden="true"  ></i>
+                            </span>
+                            <span class="hidden" data-region="loading-icon-container">
+                                <span class="loading-icon icon-no-margin"><i class="icon fa fa-circle-o-notch fa-spin fa-fw "  title="Cargando" aria-label="Cargando"></i></span>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>        
+        <div class="hidden border-bottom px-2 py-3" aria-hidden="true" data-region="view-settings">
+            <div class="d-flex align-items-center">
+                <div class="align-self-stretch" >
+                    <a class="h-100 d-flex mr-2 align-items-center" href="#" data-route-back role="button">
+                        <div class="icon-back-in-drawer">
+                            <span class="dir-rtl-hide"><i class="icon fa fa-chevron-left fa-fw " aria-hidden="true"  ></i></span>
+                            <span class="dir-ltr-hide"><i class="icon fa fa-chevron-right fa-fw " aria-hidden="true"  ></i></span>
+                        </div>
+                        <div class="icon-back-in-app">
+                            <span class="dir-rtl-hide"><i class="icon fa fa-times fa-fw " aria-hidden="true"  ></i></span>
+                        </div>                    </a>
+                </div>
+                <div>
+                    Configuración
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="body-container position-relative" data-region="body-container">
+        
+        <div
+            class="hidden"
+            data-region="view-contact"
+            aria-hidden="true"
+        >
+            <div class="p-2 pt-3" data-region="content-container"></div>
+        </div>        <div class="hidden h-100" data-region="view-contacts" aria-hidden="true" data-user-id="23408">
+            <div class="d-flex flex-column h-100">
+                <div class="p-3 border-bottom">
+                    <ul class="nav nav-pills nav-fill" role="tablist">
+                        <li class="nav-item">
+                            <a
+                                id="contacts-tab-6293fc5031d4b6293fc4fe580c47"
+                                class="nav-link active"
+                                href="#contacts-tab-panel-6293fc5031d4b6293fc4fe580c47"
+                                data-toggle="tab"
+                                data-action="show-contacts-section"
+                                role="tab"
+                                aria-controls="contacts-tab-panel-6293fc5031d4b6293fc4fe580c47"
+                                aria-selected="true"
+                            >
+                                Contactos
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a
+                                id="requests-tab-6293fc5031d4b6293fc4fe580c47"
+                                class="nav-link"
+                                href="#requests-tab-panel-6293fc5031d4b6293fc4fe580c47"
+                                data-toggle="tab"
+                                data-action="show-requests-section"
+                                role="tab"
+                                aria-controls="requests-tab-panel-6293fc5031d4b6293fc4fe580c47"
+                                aria-selected="false"
+                            >
+                                Peticiones
+                                <span class="badge bg-primary ml-2 hidden"
+                                data-region="contact-request-count"
+                                aria-label="Hay 0 solicitudes de contacto pendientes">
+                                    0
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="tab-content d-flex flex-column h-100">
+                            <div
+            class="tab-pane fade show active h-100 lazy-load-list"
+            aria-live="polite"
+            data-region="lazy-load-list"
+            data-user-id="23408"
+                                id="contacts-tab-panel-6293fc5031d4b6293fc4fe580c47"
+                    data-section="contacts"
+                    role="tabpanel"
+                    aria-labelledby="contacts-tab-6293fc5031d4b6293fc4fe580c47"
+
+        >
+            
+            <div class="hidden text-center p-2" data-region="empty-message-container">
+                No hay contactos
+            </div>
+            <div class="hidden list-group" data-region="content-container">
+                
+            </div>
+            <div class="list-group" data-region="placeholder-container">
+                
+            </div>
+            <div class="w-100 text-center p-3 hidden" data-region="loading-icon-container" >
+                <span class="loading-icon icon-no-margin"><i class="icon fa fa-circle-o-notch fa-spin fa-fw "  title="Cargando" aria-label="Cargando"></i></span>
+            </div>
+        </div>
+        
+                            <div
+            class="tab-pane fade h-100 lazy-load-list"
+            aria-live="polite"
+            data-region="lazy-load-list"
+            data-user-id="23408"
+                                id="requests-tab-panel-6293fc5031d4b6293fc4fe580c47"
+                    data-section="requests"
+                    role="tabpanel"
+                    aria-labelledby="requests-tab-6293fc5031d4b6293fc4fe580c47"
+
+        >
+            
+            <div class="hidden text-center p-2" data-region="empty-message-container">
+                No hay solicitudes de contacto
+            </div>
+            <div class="hidden list-group" data-region="content-container">
+                
+            </div>
+            <div class="list-group" data-region="placeholder-container">
+                
+            </div>
+            <div class="w-100 text-center p-3 hidden" data-region="loading-icon-container" >
+                <span class="loading-icon icon-no-margin"><i class="icon fa fa-circle-o-notch fa-spin fa-fw "  title="Cargando" aria-label="Cargando"></i></span>
+            </div>
+        </div>
+                </div>
+            </div>
+        </div>        
+        <div
+            class="view-conversation hidden h-100"
+            aria-hidden="true"
+            data-region="view-conversation"
+            data-user-id="23408"
+            data-midnight="1653861600"
+            data-message-poll-min="10"
+            data-message-poll-max="120"
+            data-message-poll-after-max="300"
+            style="overflow-y: auto; overflow-x: hidden"
+        >
+            <div class="position-relative h-100" data-region="content-container" style="overflow-y: auto; overflow-x: hidden">
+                <div class="content-message-container hidden h-100 px-2 pt-0" data-region="content-message-container" role="log" style="overflow-y: auto; overflow-x: hidden">
+                    <div class="py-3 bg-light sticky-top z-index-1 border-bottom text-center hidden" data-region="contact-request-sent-message-container">
+                        <p class="m-0">Solicitud de contacto enviada</p>
+                        <p class="font-italic font-weight-light" data-region="text"></p>
+                    </div>
+                    <div class="p-3 bg-light text-center hidden" data-region="self-conversation-message-container">
+                        <p class="m-0">Espacio personal</p>
+                        <p class="font-italic font-weight-light" data-region="text">Guardar borradores de mensajes, notas, etc, para acceder a ellos más tarde.</p>
+                   </div>
+                    <div class="hidden text-center p-3" data-region="more-messages-loading-icon-container"><span class="loading-icon icon-no-margin"><i class="icon fa fa-circle-o-notch fa-spin fa-fw "  title="Cargando" aria-label="Cargando"></i></span>
+</div>
+                </div>
+                <div class="p-4 w-100 h-100 hidden position-absolute" data-region="confirm-dialogue-container" style="top: 0; background: rgba(0,0,0,0.3);">
+                    
+                    <div class="p-3 bg-white" data-region="confirm-dialogue" role="alert">
+                        <h3 class="h6 hidden" data-region="dialogue-header"></h3>
+                        <p class="text-muted" data-region="dialogue-text"></p>
+                        <div class="mb-2 hidden" data-region="delete-messages-for-all-users-toggle-container">
+                            <label class="custom-control-label ml-2 text-muted">
+                                <input type="checkbox" data-region="delete-messages-for-all-users-toggle">
+                                Borrar para mí y para todos los demás
+                            </label>
+                        </div>
+                        <button type="button" class="btn btn-primary btn-block hidden" data-action="confirm-block">
+                            <span data-region="dialogue-button-text">Bloque</span>
+                            <span class="hidden" data-region="loading-icon-container"><span class="loading-icon icon-no-margin"><i class="icon fa fa-circle-o-notch fa-spin fa-fw "  title="Cargando" aria-label="Cargando"></i></span>
+</span>
+                        </button>
+                        <button type="button" class="btn btn-primary btn-block hidden" data-action="confirm-unblock">
+                            <span data-region="dialogue-button-text">Desbloquear</span>
+                            <span class="hidden" data-region="loading-icon-container"><span class="loading-icon icon-no-margin"><i class="icon fa fa-circle-o-notch fa-spin fa-fw "  title="Cargando" aria-label="Cargando"></i></span>
+</span>
+                        </button>
+                        <button type="button" class="btn btn-primary btn-block hidden" data-action="confirm-remove-contact">
+                            <span data-region="dialogue-button-text">Quitar</span>
+                            <span class="hidden" data-region="loading-icon-container"><span class="loading-icon icon-no-margin"><i class="icon fa fa-circle-o-notch fa-spin fa-fw "  title="Cargando" aria-label="Cargando"></i></span>
+</span>
+                        </button>
+                        <button type="button" class="btn btn-primary btn-block hidden" data-action="confirm-add-contact">
+                            <span data-region="dialogue-button-text">Agregar</span>
+                            <span class="hidden" data-region="loading-icon-container"><span class="loading-icon icon-no-margin"><i class="icon fa fa-circle-o-notch fa-spin fa-fw "  title="Cargando" aria-label="Cargando"></i></span>
+</span>
+                        </button>
+                        <button type="button" class="btn btn-primary btn-block hidden" data-action="confirm-delete-selected-messages">
+                            <span data-region="dialogue-button-text">Borrar</span>
+                            <span class="hidden" data-region="loading-icon-container"><span class="loading-icon icon-no-margin"><i class="icon fa fa-circle-o-notch fa-spin fa-fw "  title="Cargando" aria-label="Cargando"></i></span>
+</span>
+                        </button>
+                        <button type="button" class="btn btn-primary btn-block hidden" data-action="confirm-delete-conversation">
+                            <span data-region="dialogue-button-text">Borrar</span>
+                            <span class="hidden" data-region="loading-icon-container"><span class="loading-icon icon-no-margin"><i class="icon fa fa-circle-o-notch fa-spin fa-fw "  title="Cargando" aria-label="Cargando"></i></span>
+</span>
+                        </button>
+                        <button type="button" class="btn btn-primary btn-block hidden" data-action="request-add-contact">
+                            <span data-region="dialogue-button-text">Enviar solicitud de contacto</span>
+                            <span class="hidden" data-region="loading-icon-container"><span class="loading-icon icon-no-margin"><i class="icon fa fa-circle-o-notch fa-spin fa-fw "  title="Cargando" aria-label="Cargando"></i></span>
+</span>
+                        </button>
+                        <button type="button" class="btn btn-primary btn-block hidden" data-action="accept-contact-request">
+                            <span data-region="dialogue-button-text">Aceptar y añadir a los contactos</span>
+                            <span class="hidden" data-region="loading-icon-container"><span class="loading-icon icon-no-margin"><i class="icon fa fa-circle-o-notch fa-spin fa-fw "  title="Cargando" aria-label="Cargando"></i></span>
+</span>
+                        </button>
+                        <button type="button" class="btn btn-secondary btn-block hidden" data-action="decline-contact-request">
+                            <span data-region="dialogue-button-text">Rechazar</span>
+                            <span class="hidden" data-region="loading-icon-container"><span class="loading-icon icon-no-margin"><i class="icon fa fa-circle-o-notch fa-spin fa-fw "  title="Cargando" aria-label="Cargando"></i></span>
+</span>
+                        </button>
+                        <button type="button" class="btn btn-secondary btn-block" data-action="cancel-confirm">Cancelar</button>
+                    </div>
+                </div>
+                <div class="px-2 pb-2 pt-0" data-region="content-placeholder">
+                    <div class="h-100 d-flex flex-column">
+                        <div
+                            class="px-2 pb-2 pt-0 bg-light h-100"
+                            style="overflow-y: auto"
+                        >
+                            <div class="mt-4">
+                                <div class="mb-4">
+                                    <div class="mx-auto bg-white" style="height: 25px; width: 100px"></div>
+                                </div>
+                                <div class="d-flex flex-column p-2 bg-white rounded mb-2">
+                                    <div class="d-flex align-items-center mb-2">
+                                        <div class="mr-2">
+                                            <div class="rounded-circle bg-pulse-grey" style="height: 35px; width: 35px"></div>
+                                        </div>
+                                        <div class="mr-4 w-75 bg-pulse-grey" style="height: 16px"></div>
+                                        <div class="ml-auto bg-pulse-grey" style="width: 35px; height: 16px"></div>
+                                    </div>
+                                    <div class="bg-pulse-grey w-100" style="height: 16px"></div>
+                                    <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                    <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                    <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                    <div class="bg-pulse-grey w-75 mt-2" style="height: 16px"></div>
+                                </div>
+                                <div class="d-flex flex-column p-2 bg-white rounded mb-2">
+                                    <div class="d-flex align-items-center mb-2">
+                                        <div class="mr-2">
+                                            <div class="rounded-circle bg-pulse-grey" style="height: 35px; width: 35px"></div>
+                                        </div>
+                                        <div class="mr-4 w-75 bg-pulse-grey" style="height: 16px"></div>
+                                        <div class="ml-auto bg-pulse-grey" style="width: 35px; height: 16px"></div>
+                                    </div>
+                                    <div class="bg-pulse-grey w-100" style="height: 16px"></div>
+                                    <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                    <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                    <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                    <div class="bg-pulse-grey w-75 mt-2" style="height: 16px"></div>
+                                </div>
+                                <div class="d-flex flex-column p-2 bg-white rounded mb-2">
+                                    <div class="d-flex align-items-center mb-2">
+                                        <div class="mr-2">
+                                            <div class="rounded-circle bg-pulse-grey" style="height: 35px; width: 35px"></div>
+                                        </div>
+                                        <div class="mr-4 w-75 bg-pulse-grey" style="height: 16px"></div>
+                                        <div class="ml-auto bg-pulse-grey" style="width: 35px; height: 16px"></div>
+                                    </div>
+                                    <div class="bg-pulse-grey w-100" style="height: 16px"></div>
+                                    <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                    <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                    <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                    <div class="bg-pulse-grey w-75 mt-2" style="height: 16px"></div>
+                                </div>
+                            </div>                            <div class="mt-4">
+                                <div class="mb-4">
+                                    <div class="mx-auto bg-white" style="height: 25px; width: 100px"></div>
+                                </div>
+                                <div class="d-flex flex-column p-2 bg-white rounded mb-2">
+                                    <div class="d-flex align-items-center mb-2">
+                                        <div class="mr-2">
+                                            <div class="rounded-circle bg-pulse-grey" style="height: 35px; width: 35px"></div>
+                                        </div>
+                                        <div class="mr-4 w-75 bg-pulse-grey" style="height: 16px"></div>
+                                        <div class="ml-auto bg-pulse-grey" style="width: 35px; height: 16px"></div>
+                                    </div>
+                                    <div class="bg-pulse-grey w-100" style="height: 16px"></div>
+                                    <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                    <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                    <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                    <div class="bg-pulse-grey w-75 mt-2" style="height: 16px"></div>
+                                </div>
+                                <div class="d-flex flex-column p-2 bg-white rounded mb-2">
+                                    <div class="d-flex align-items-center mb-2">
+                                        <div class="mr-2">
+                                            <div class="rounded-circle bg-pulse-grey" style="height: 35px; width: 35px"></div>
+                                        </div>
+                                        <div class="mr-4 w-75 bg-pulse-grey" style="height: 16px"></div>
+                                        <div class="ml-auto bg-pulse-grey" style="width: 35px; height: 16px"></div>
+                                    </div>
+                                    <div class="bg-pulse-grey w-100" style="height: 16px"></div>
+                                    <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                    <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                    <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                    <div class="bg-pulse-grey w-75 mt-2" style="height: 16px"></div>
+                                </div>
+                                <div class="d-flex flex-column p-2 bg-white rounded mb-2">
+                                    <div class="d-flex align-items-center mb-2">
+                                        <div class="mr-2">
+                                            <div class="rounded-circle bg-pulse-grey" style="height: 35px; width: 35px"></div>
+                                        </div>
+                                        <div class="mr-4 w-75 bg-pulse-grey" style="height: 16px"></div>
+                                        <div class="ml-auto bg-pulse-grey" style="width: 35px; height: 16px"></div>
+                                    </div>
+                                    <div class="bg-pulse-grey w-100" style="height: 16px"></div>
+                                    <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                    <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                    <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                    <div class="bg-pulse-grey w-75 mt-2" style="height: 16px"></div>
+                                </div>
+                            </div>                            <div class="mt-4">
+                                <div class="mb-4">
+                                    <div class="mx-auto bg-white" style="height: 25px; width: 100px"></div>
+                                </div>
+                                <div class="d-flex flex-column p-2 bg-white rounded mb-2">
+                                    <div class="d-flex align-items-center mb-2">
+                                        <div class="mr-2">
+                                            <div class="rounded-circle bg-pulse-grey" style="height: 35px; width: 35px"></div>
+                                        </div>
+                                        <div class="mr-4 w-75 bg-pulse-grey" style="height: 16px"></div>
+                                        <div class="ml-auto bg-pulse-grey" style="width: 35px; height: 16px"></div>
+                                    </div>
+                                    <div class="bg-pulse-grey w-100" style="height: 16px"></div>
+                                    <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                    <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                    <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                    <div class="bg-pulse-grey w-75 mt-2" style="height: 16px"></div>
+                                </div>
+                                <div class="d-flex flex-column p-2 bg-white rounded mb-2">
+                                    <div class="d-flex align-items-center mb-2">
+                                        <div class="mr-2">
+                                            <div class="rounded-circle bg-pulse-grey" style="height: 35px; width: 35px"></div>
+                                        </div>
+                                        <div class="mr-4 w-75 bg-pulse-grey" style="height: 16px"></div>
+                                        <div class="ml-auto bg-pulse-grey" style="width: 35px; height: 16px"></div>
+                                    </div>
+                                    <div class="bg-pulse-grey w-100" style="height: 16px"></div>
+                                    <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                    <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                    <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                    <div class="bg-pulse-grey w-75 mt-2" style="height: 16px"></div>
+                                </div>
+                                <div class="d-flex flex-column p-2 bg-white rounded mb-2">
+                                    <div class="d-flex align-items-center mb-2">
+                                        <div class="mr-2">
+                                            <div class="rounded-circle bg-pulse-grey" style="height: 35px; width: 35px"></div>
+                                        </div>
+                                        <div class="mr-4 w-75 bg-pulse-grey" style="height: 16px"></div>
+                                        <div class="ml-auto bg-pulse-grey" style="width: 35px; height: 16px"></div>
+                                    </div>
+                                    <div class="bg-pulse-grey w-100" style="height: 16px"></div>
+                                    <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                    <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                    <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                    <div class="bg-pulse-grey w-75 mt-2" style="height: 16px"></div>
+                                </div>
+                            </div>                            <div class="mt-4">
+                                <div class="mb-4">
+                                    <div class="mx-auto bg-white" style="height: 25px; width: 100px"></div>
+                                </div>
+                                <div class="d-flex flex-column p-2 bg-white rounded mb-2">
+                                    <div class="d-flex align-items-center mb-2">
+                                        <div class="mr-2">
+                                            <div class="rounded-circle bg-pulse-grey" style="height: 35px; width: 35px"></div>
+                                        </div>
+                                        <div class="mr-4 w-75 bg-pulse-grey" style="height: 16px"></div>
+                                        <div class="ml-auto bg-pulse-grey" style="width: 35px; height: 16px"></div>
+                                    </div>
+                                    <div class="bg-pulse-grey w-100" style="height: 16px"></div>
+                                    <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                    <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                    <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                    <div class="bg-pulse-grey w-75 mt-2" style="height: 16px"></div>
+                                </div>
+                                <div class="d-flex flex-column p-2 bg-white rounded mb-2">
+                                    <div class="d-flex align-items-center mb-2">
+                                        <div class="mr-2">
+                                            <div class="rounded-circle bg-pulse-grey" style="height: 35px; width: 35px"></div>
+                                        </div>
+                                        <div class="mr-4 w-75 bg-pulse-grey" style="height: 16px"></div>
+                                        <div class="ml-auto bg-pulse-grey" style="width: 35px; height: 16px"></div>
+                                    </div>
+                                    <div class="bg-pulse-grey w-100" style="height: 16px"></div>
+                                    <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                    <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                    <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                    <div class="bg-pulse-grey w-75 mt-2" style="height: 16px"></div>
+                                </div>
+                                <div class="d-flex flex-column p-2 bg-white rounded mb-2">
+                                    <div class="d-flex align-items-center mb-2">
+                                        <div class="mr-2">
+                                            <div class="rounded-circle bg-pulse-grey" style="height: 35px; width: 35px"></div>
+                                        </div>
+                                        <div class="mr-4 w-75 bg-pulse-grey" style="height: 16px"></div>
+                                        <div class="ml-auto bg-pulse-grey" style="width: 35px; height: 16px"></div>
+                                    </div>
+                                    <div class="bg-pulse-grey w-100" style="height: 16px"></div>
+                                    <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                    <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                    <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                    <div class="bg-pulse-grey w-75 mt-2" style="height: 16px"></div>
+                                </div>
+                            </div>                            <div class="mt-4">
+                                <div class="mb-4">
+                                    <div class="mx-auto bg-white" style="height: 25px; width: 100px"></div>
+                                </div>
+                                <div class="d-flex flex-column p-2 bg-white rounded mb-2">
+                                    <div class="d-flex align-items-center mb-2">
+                                        <div class="mr-2">
+                                            <div class="rounded-circle bg-pulse-grey" style="height: 35px; width: 35px"></div>
+                                        </div>
+                                        <div class="mr-4 w-75 bg-pulse-grey" style="height: 16px"></div>
+                                        <div class="ml-auto bg-pulse-grey" style="width: 35px; height: 16px"></div>
+                                    </div>
+                                    <div class="bg-pulse-grey w-100" style="height: 16px"></div>
+                                    <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                    <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                    <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                    <div class="bg-pulse-grey w-75 mt-2" style="height: 16px"></div>
+                                </div>
+                                <div class="d-flex flex-column p-2 bg-white rounded mb-2">
+                                    <div class="d-flex align-items-center mb-2">
+                                        <div class="mr-2">
+                                            <div class="rounded-circle bg-pulse-grey" style="height: 35px; width: 35px"></div>
+                                        </div>
+                                        <div class="mr-4 w-75 bg-pulse-grey" style="height: 16px"></div>
+                                        <div class="ml-auto bg-pulse-grey" style="width: 35px; height: 16px"></div>
+                                    </div>
+                                    <div class="bg-pulse-grey w-100" style="height: 16px"></div>
+                                    <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                    <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                    <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                    <div class="bg-pulse-grey w-75 mt-2" style="height: 16px"></div>
+                                </div>
+                                <div class="d-flex flex-column p-2 bg-white rounded mb-2">
+                                    <div class="d-flex align-items-center mb-2">
+                                        <div class="mr-2">
+                                            <div class="rounded-circle bg-pulse-grey" style="height: 35px; width: 35px"></div>
+                                        </div>
+                                        <div class="mr-4 w-75 bg-pulse-grey" style="height: 16px"></div>
+                                        <div class="ml-auto bg-pulse-grey" style="width: 35px; height: 16px"></div>
+                                    </div>
+                                    <div class="bg-pulse-grey w-100" style="height: 16px"></div>
+                                    <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                    <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                    <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                    <div class="bg-pulse-grey w-75 mt-2" style="height: 16px"></div>
+                                </div>
+                            </div>                        </div>
+                    </div>                </div>
+            </div>
+        </div>
+        
+        <div
+            class="hidden"
+            aria-hidden="true"
+            data-region="view-group-info"
+        >
+            <div
+                class="pt-3 h-100 d-flex flex-column"
+                data-region="group-info-content-container"
+                style="overflow-y: auto"
+            ></div>
+        </div>        <div class="h-100 view-overview-body" aria-hidden="false" data-region="view-overview"  data-user-id="23408">
+            <div id="message-drawer-view-overview-container-6293fc5031d4b6293fc4fe580c47" class="d-flex flex-column h-100" style="overflow-y: auto">
+                    
+                    
+                    <div
+                        class="section border-0 card"
+                        data-region="view-overview-favourites"
+                    >
+                        <div id="view-overview-favourites-toggle" class="card-header p-0" data-region="toggle">
+                            <button
+                                class="btn btn-link w-100 text-left p-2 d-flex align-items-center overview-section-toggle collapsed"
+                                data-toggle="collapse"
+                                data-target="#view-overview-favourites-target-6293fc5031d4b6293fc4fe580c47"
+                                aria-expanded="false"
+                                aria-controls="view-overview-favourites-target-6293fc5031d4b6293fc4fe580c47"
+                            >
+                                <span class="collapsed-icon-container">
+                                    <i class="icon fa fa-caret-right fa-fw " aria-hidden="true"  ></i>
+                                </span>
+                                <span class="expanded-icon-container">
+                                    <i class="icon fa fa-caret-down fa-fw " aria-hidden="true"  ></i>
+                                </span>
+                                <span class="font-weight-bold">Destacados</span>
+                                <small class="hidden ml-1" data-region="section-total-count-container"
+                                aria-label=" conversaciones en total">
+                                    (<span data-region="section-total-count"></span>)
+                                </small>
+                                <span class="hidden ml-2" data-region="loading-icon-container">
+                                    <span class="loading-icon icon-no-margin"><i class="icon fa fa-circle-o-notch fa-spin fa-fw "  title="Cargando" aria-label="Cargando"></i></span>
+                                </span>
+                                <span class="hidden badge badge-pill badge-primary ml-auto bg-primary"
+                                data-region="section-unread-count"
+                                >
+                                    
+                                </span>
+                            </button>
+                        </div>
+                                            <div
+                        class="collapse border-bottom  lazy-load-list"
+                        aria-live="polite"
+                        data-region="lazy-load-list"
+                        data-user-id="23408"
+                                    id="view-overview-favourites-target-6293fc5031d4b6293fc4fe580c47"
+            aria-labelledby="view-overview-favourites-toggle"
+            data-parent="#message-drawer-view-overview-container-6293fc5031d4b6293fc4fe580c47"
+
+                    >
+                        
+                        <div class="hidden text-center p-2" data-region="empty-message-container">
+                                    <p class="text-muted mt-2">Sin conversaciones destacadas</p>
+
+                        </div>
+                        <div class="hidden list-group" data-region="content-container">
+                            
+                        </div>
+                        <div class="list-group" data-region="placeholder-container">
+                                    <div class="text-center py-2"><span class="loading-icon icon-no-margin"><i class="icon fa fa-circle-o-notch fa-spin fa-fw "  title="Cargando" aria-label="Cargando"></i></span>
+</div>
+
+                        </div>
+                        <div class="w-100 text-center p-3 hidden" data-region="loading-icon-container" >
+                            <span class="loading-icon icon-no-margin"><i class="icon fa fa-circle-o-notch fa-spin fa-fw "  title="Cargando" aria-label="Cargando"></i></span>
+                        </div>
+                    </div>
+                    </div>
+                    
+                    
+                    <div
+                        class="section border-0 card"
+                        data-region="view-overview-group-messages"
+                    >
+                        <div id="view-overview-group-messages-toggle" class="card-header p-0" data-region="toggle">
+                            <button
+                                class="btn btn-link w-100 text-left p-2 d-flex align-items-center overview-section-toggle collapsed"
+                                data-toggle="collapse"
+                                data-target="#view-overview-group-messages-target-6293fc5031d4b6293fc4fe580c47"
+                                aria-expanded="false"
+                                aria-controls="view-overview-group-messages-target-6293fc5031d4b6293fc4fe580c47"
+                            >
+                                <span class="collapsed-icon-container">
+                                    <i class="icon fa fa-caret-right fa-fw " aria-hidden="true"  ></i>
+                                </span>
+                                <span class="expanded-icon-container">
+                                    <i class="icon fa fa-caret-down fa-fw " aria-hidden="true"  ></i>
+                                </span>
+                                <span class="font-weight-bold">Grupo</span>
+                                <small class="hidden ml-1" data-region="section-total-count-container"
+                                aria-label=" conversaciones en total">
+                                    (<span data-region="section-total-count"></span>)
+                                </small>
+                                <span class="hidden ml-2" data-region="loading-icon-container">
+                                    <span class="loading-icon icon-no-margin"><i class="icon fa fa-circle-o-notch fa-spin fa-fw "  title="Cargando" aria-label="Cargando"></i></span>
+                                </span>
+                                <span class="hidden badge badge-pill badge-primary ml-auto bg-primary"
+                                data-region="section-unread-count"
+                                >
+                                    
+                                </span>
+                            </button>
+                        </div>
+                                            <div
+                        class="collapse border-bottom  lazy-load-list"
+                        aria-live="polite"
+                        data-region="lazy-load-list"
+                        data-user-id="23408"
+                                    id="view-overview-group-messages-target-6293fc5031d4b6293fc4fe580c47"
+            aria-labelledby="view-overview-group-messages-toggle"
+            data-parent="#message-drawer-view-overview-container-6293fc5031d4b6293fc4fe580c47"
+
+                    >
+                        
+                        <div class="hidden text-center p-2" data-region="empty-message-container">
+                                    <p class="text-muted mt-2">No hay conversaciónes de grupo</p>
+
+                        </div>
+                        <div class="hidden list-group" data-region="content-container">
+                            
+                        </div>
+                        <div class="list-group" data-region="placeholder-container">
+                                    <div class="text-center py-2"><span class="loading-icon icon-no-margin"><i class="icon fa fa-circle-o-notch fa-spin fa-fw "  title="Cargando" aria-label="Cargando"></i></span>
+</div>
+
+                        </div>
+                        <div class="w-100 text-center p-3 hidden" data-region="loading-icon-container" >
+                            <span class="loading-icon icon-no-margin"><i class="icon fa fa-circle-o-notch fa-spin fa-fw "  title="Cargando" aria-label="Cargando"></i></span>
+                        </div>
+                    </div>
+                    </div>
+                    
+                    
+                    <div
+                        class="section border-0 card"
+                        data-region="view-overview-messages"
+                    >
+                        <div id="view-overview-messages-toggle" class="card-header p-0" data-region="toggle">
+                            <button
+                                class="btn btn-link w-100 text-left p-2 d-flex align-items-center overview-section-toggle collapsed"
+                                data-toggle="collapse"
+                                data-target="#view-overview-messages-target-6293fc5031d4b6293fc4fe580c47"
+                                aria-expanded="false"
+                                aria-controls="view-overview-messages-target-6293fc5031d4b6293fc4fe580c47"
+                            >
+                                <span class="collapsed-icon-container">
+                                    <i class="icon fa fa-caret-right fa-fw " aria-hidden="true"  ></i>
+                                </span>
+                                <span class="expanded-icon-container">
+                                    <i class="icon fa fa-caret-down fa-fw " aria-hidden="true"  ></i>
+                                </span>
+                                <span class="font-weight-bold">Privado</span>
+                                <small class="hidden ml-1" data-region="section-total-count-container"
+                                aria-label=" conversaciones en total">
+                                    (<span data-region="section-total-count"></span>)
+                                </small>
+                                <span class="hidden ml-2" data-region="loading-icon-container">
+                                    <span class="loading-icon icon-no-margin"><i class="icon fa fa-circle-o-notch fa-spin fa-fw "  title="Cargando" aria-label="Cargando"></i></span>
+                                </span>
+                                <span class="hidden badge badge-pill badge-primary ml-auto bg-primary"
+                                data-region="section-unread-count"
+                                >
+                                    
+                                </span>
+                            </button>
+                        </div>
+                                            <div
+                        class="collapse border-bottom  lazy-load-list"
+                        aria-live="polite"
+                        data-region="lazy-load-list"
+                        data-user-id="23408"
+                                    id="view-overview-messages-target-6293fc5031d4b6293fc4fe580c47"
+            aria-labelledby="view-overview-messages-toggle"
+            data-parent="#message-drawer-view-overview-container-6293fc5031d4b6293fc4fe580c47"
+
+                    >
+                        
+                        <div class="hidden text-center p-2" data-region="empty-message-container">
+                                    <p class="text-muted mt-2">No hay conversaciones privadas</p>
+
+                        </div>
+                        <div class="hidden list-group" data-region="content-container">
+                            
+                        </div>
+                        <div class="list-group" data-region="placeholder-container">
+                                    <div class="text-center py-2"><span class="loading-icon icon-no-margin"><i class="icon fa fa-circle-o-notch fa-spin fa-fw "  title="Cargando" aria-label="Cargando"></i></span>
+</div>
+
+                        </div>
+                        <div class="w-100 text-center p-3 hidden" data-region="loading-icon-container" >
+                            <span class="loading-icon icon-no-margin"><i class="icon fa fa-circle-o-notch fa-spin fa-fw "  title="Cargando" aria-label="Cargando"></i></span>
+                        </div>
+                    </div>
+                    </div>
+            </div>
+        </div>
+        
+        <div
+            data-region="view-search"
+            aria-hidden="true"
+            class="h-100 hidden"
+            data-user-id="23408"
+            data-users-offset="0"
+            data-messages-offset="0"
+            style="overflow-y: auto"
+            
+        >
+            <div class="hidden" data-region="search-results-container" style="overflow-y: auto">
+                
+                <div class="d-flex flex-column">
+                    <div class="mb-3 bg-white" data-region="all-contacts-container">
+                        <div data-region="contacts-container"  class="pt-2">
+                            <h4 class="h6 px-2">Contactos</h4>
+                            <div class="list-group" data-region="list"></div>
+                        </div>
+                        <div data-region="non-contacts-container" class="pt-2 border-top">
+                            <h4 class="h6 px-2">No contactos</h4>
+                            <div class="list-group" data-region="list"></div>
+                        </div>
+                        <div class="text-right">
+                            <button class="btn btn-link text-primary" data-action="load-more-users">
+                                <span data-region="button-text">Cargar más</span>
+                                <span data-region="loading-icon-container" class="hidden"><span class="loading-icon icon-no-margin"><i class="icon fa fa-circle-o-notch fa-spin fa-fw "  title="Cargando" aria-label="Cargando"></i></span>
+</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="bg-white" data-region="messages-container">
+                        <h4 class="h6 px-2 pt-2">Mensajes</h4>
+                        <div class="list-group" data-region="list"></div>
+                        <div class="text-right">
+                            <button class="btn btn-link text-primary" data-action="load-more-messages">
+                                <span data-region="button-text">Cargar más</span>
+                                <span data-region="loading-icon-container" class="hidden"><span class="loading-icon icon-no-margin"><i class="icon fa fa-circle-o-notch fa-spin fa-fw "  title="Cargando" aria-label="Cargando"></i></span>
+</span>
+                            </button>
+                        </div>
+                    </div>
+                    <p class="hidden p-3 text-center" data-region="no-results-container">No hay resultados</p>
+                </div>            </div>
+            <div class="hidden" data-region="loading-placeholder">
+                <div class="text-center pt-3 icon-size-4"><span class="loading-icon icon-no-margin"><i class="icon fa fa-circle-o-notch fa-spin fa-fw "  title="Cargando" aria-label="Cargando"></i></span>
+</div>
+            </div>
+            <div class="p-3 text-center" data-region="empty-message-container">
+                <p>Buscar personas y mensajes</p>
+            </div>
+        </div>        
+        <div class="h-100 hidden bg-white" aria-hidden="true" data-region="view-settings">
+            <div class="hidden" data-region="content-container">
+                
+                <div data-region="settings" class="p-3">
+                    <h3 class="h6 font-weight-bold">Privacidad</h3>
+                    <p>Puedes restringir quién puede enviarte mensajes</p>
+                    <div data-preference="blocknoncontacts" class="mb-3">
+                            <div class="custom-control custom-radio mb-2">
+                                <input
+                                    type="radio"
+                                    name="message_blocknoncontacts"
+                                    class="custom-control-input"
+                                    id="block-noncontacts-6293fc5031d4b6293fc4fe580c47-1"
+                                    value="1"
+                                >
+                                <label class="custom-control-label ml-2" for="block-noncontacts-6293fc5031d4b6293fc4fe580c47-1">
+                                    Únicamente mis contactos
+                                </label>
+                            </div>
+                            <div class="custom-control custom-radio mb-2">
+                                <input
+                                    type="radio"
+                                    name="message_blocknoncontacts"
+                                    class="custom-control-input"
+                                    id="block-noncontacts-6293fc5031d4b6293fc4fe580c47-0"
+                                    value="0"
+                                >
+                                <label class="custom-control-label ml-2" for="block-noncontacts-6293fc5031d4b6293fc4fe580c47-0">
+                                    Mis contactos y cualquier persona de mis cursos
+                                </label>
+                            </div>
+                    </div>
+                
+                    <div class="hidden" data-region="notification-preference-container">
+                        <h3 class="mb-2 mt-4 h6 font-weight-bold">Preferencias de notificación</h3>
+                    </div>
+                
+                    <h3 class="mb-2 mt-4 h6 font-weight-bold">General</h3>
+                    <div data-preference="entertosend">
+                        <span class="switch">
+                            <input type="checkbox"
+                                id="enter-to-send-6293fc5031d4b6293fc4fe580c47"
+                                
+                            >
+                            <label for="enter-to-send-6293fc5031d4b6293fc4fe580c47">
+                                Usar "intro" para enviar
+                            </label>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div data-region="placeholder-container">
+                
+                <div class="d-flex flex-column p-3">
+                    <div class="w-25 bg-pulse-grey h6" style="height: 18px"></div>
+                    <div class="w-75 bg-pulse-grey mb-4" style="height: 18px"></div>
+                    <div class="mb-3">
+                        <div class="w-100 d-flex mb-3">
+                            <div class="bg-pulse-grey rounded-circle" style="width: 18px; height: 18px"></div>
+                            <div class="bg-pulse-grey w-50 ml-2" style="height: 18px"></div>
+                        </div>
+                        <div class="w-100 d-flex mb-3">
+                            <div class="bg-pulse-grey rounded-circle" style="width: 18px; height: 18px"></div>
+                            <div class="bg-pulse-grey w-50 ml-2" style="height: 18px"></div>
+                        </div>
+                        <div class="w-100 d-flex mb-3">
+                            <div class="bg-pulse-grey rounded-circle" style="width: 18px; height: 18px"></div>
+                            <div class="bg-pulse-grey w-50 ml-2" style="height: 18px"></div>
+                        </div>
+                    </div>
+                    <div class="w-50 bg-pulse-grey h6 mb-3 mt-2" style="height: 18px"></div>
+                    <div class="mb-4">
+                        <div class="w-100 d-flex mb-2 align-items-center">
+                            <div class="bg-pulse-grey w-25" style="width: 18px; height: 27px"></div>
+                            <div class="bg-pulse-grey w-25 ml-2" style="height: 18px"></div>
+                        </div>
+                        <div class="w-100 d-flex mb-2 align-items-center">
+                            <div class="bg-pulse-grey w-25" style="width: 18px; height: 27px"></div>
+                            <div class="bg-pulse-grey w-25 ml-2" style="height: 18px"></div>
+                        </div>
+                    </div>
+                    <div class="w-25 bg-pulse-grey h6 mb-3 mt-2" style="height: 18px"></div>
+                    <div class="mb-3">
+                        <div class="w-100 d-flex mb-2 align-items-center">
+                            <div class="bg-pulse-grey w-25" style="width: 18px; height: 27px"></div>
+                            <div class="bg-pulse-grey w-50 ml-2" style="height: 18px"></div>
+                        </div>
+                    </div>
+                </div>            </div>
+        </div>    </div>
+    <div class="footer-container position-relative" data-region="footer-container">
+        
+        <div
+            class="hidden border-top bg-white position-relative"
+            aria-hidden="true"
+            data-region="view-conversation"
+            data-enter-to-send="0"
+        >
+            <div class="hidden p-2" data-region="content-messages-footer-container">
+                
+                <div class="d-flex mt-1">
+                    <textarea
+                        dir="auto"
+                        data-region="send-message-txt"
+                        class="form-control bg-light"
+                        rows="3"
+                        data-auto-rows
+                        data-min-rows="3"
+                        data-max-rows="5"
+                        role="textbox"
+                        aria-label="Escribe un mensaje..."
+                        placeholder="Escribe un mensaje..."
+                        style="resize: none"
+                    ></textarea>
+                    <button
+                        class="btn btn-link btn-icon icon-size-3 ml-1 mt-auto"
+                        aria-label="Enviar mensaje"
+                        data-action="send-message"
+                    >
+                        <span data-region="send-icon-container"><i class="icon fa fa-paper-plane fa-fw " aria-hidden="true"  ></i></span>
+                        <span class="hidden" data-region="loading-icon-container"><span class="loading-icon icon-no-margin"><i class="icon fa fa-circle-o-notch fa-spin fa-fw "  title="Cargando" aria-label="Cargando"></i></span>
+</span>
+                    </button>
+                </div>
+            </div>
+            <div class="hidden p-2" data-region="content-messages-footer-edit-mode-container">
+                
+                <div class="d-flex p-3 justify-content-end">
+                    <button
+                        class="btn btn-link btn-icon my-1 icon-size-4"
+                        data-action="delete-selected-messages"
+                        data-toggle="tooltip"
+                        data-placement="top"
+                        title="Eliminar mensajes seleccionados"
+                    >
+                        <span data-region="icon-container"><i class="icon fa fa-trash fa-fw " aria-hidden="true"  ></i></span>
+                        <span class="hidden" data-region="loading-icon-container"><span class="loading-icon icon-no-margin"><i class="icon fa fa-circle-o-notch fa-spin fa-fw "  title="Cargando" aria-label="Cargando"></i></span>
+</span>
+                        <span class="sr-only">Eliminar mensajes seleccionados</span>
+                    </button>
+                </div>            </div>
+            <div class="hidden bg-secondary p-3" data-region="content-messages-footer-require-contact-container">
+                
+                <div class="p-3 bg-white">
+                    <p data-region="title"></p>
+                    <p class="text-muted" data-region="text"></p>
+                    <button type="button" class="btn btn-primary btn-block" data-action="request-add-contact">
+                        <span data-region="dialogue-button-text">Enviar solicitud de contacto</span>
+                        <span class="hidden" data-region="loading-icon-container"><span class="loading-icon icon-no-margin"><i class="icon fa fa-circle-o-notch fa-spin fa-fw "  title="Cargando" aria-label="Cargando"></i></span>
+</span>
+                    </button>
+                </div>
+            </div>
+            <div class="hidden bg-secondary p-3" data-region="content-messages-footer-require-unblock-container">
+                
+                <div class="p-3 bg-white">
+                    <p class="text-muted" data-region="text">Ha bloqueado a este usuario.</p>
+                    <button type="button" class="btn btn-primary btn-block" data-action="request-unblock">
+                        <span data-region="dialogue-button-text">Desbloquear usuario</span>
+                        <span class="hidden" data-region="loading-icon-container"><span class="loading-icon icon-no-margin"><i class="icon fa fa-circle-o-notch fa-spin fa-fw "  title="Cargando" aria-label="Cargando"></i></span>
+</span>
+                    </button>
+                </div>
+            </div>
+            <div class="hidden bg-secondary p-3" data-region="content-messages-footer-unable-to-message">
+                
+                <div class="p-3 bg-white">
+                    <p class="text-muted" data-region="text">No puedes enviar mensajes a este usuario</p>
+                </div>
+            </div>
+            <div class="p-2" data-region="placeholder-container">
+                <div class="d-flex">
+                    <div class="bg-pulse-grey w-100" style="height: 80px"></div>
+                    <div class="mx-2 mb-2 align-self-end bg-pulse-grey" style="height: 20px; width: 20px"></div>
+                </div>            </div>
+            <div
+                class="hidden position-absolute"
+                data-region="confirm-dialogue-container"
+                style="top: -1px; bottom: 0; right: 0; left: 0; background: rgba(0,0,0,0.3);"
+            ></div>
+        </div>            <div data-region="view-overview" class="text-center">
+                <a href="https://www.floridaoberta.com/message/index.php">
+                    Ver todo
+                </a>
+            </div>
+    </div>
+</div>
+<footer id="page-footer">
+
+<div id="course-footer"></div>
+                <div class="container blockplace1"><div class="row"><div class="left-col col-3"><p>FLORIDA - Florida centre de formació</p>
+<p>C/ Rei en Jaume I, nº2 46470 CATARROJA (Valencia)</p></div><div class="left-col col-3"><p><a style="color:#fff;" href="http://www.floridauniversitaria.es/" target="_blank" rel="noreferrer noopener">Florida universitària</a></p>
+<p><a style="color:#fff;" href="http://www.floridauniversitaria.es/" target="_blank" rel="noreferrer noopener">Florida Centre de Formació</a></p>
+<p><a style="color:#fff;" href="http://www.floridasecundaria.es/" target="_blank" rel="noreferrer noopener">Florida Secundaria</a></p>
+<p><a style="color:#fff;" href="http://www.floridaempleo.com/" target="_blank" rel="noreferrer noopener">Fundació Florida</a></p>
+<p><a style="color:#fff;" href="http://www.escolesinfantilsninos.com/" target="_blank" rel="noreferrer noopener">Niños Gestió Educativa</a></p></div><div class="left-col col-3"><p><a title="Facebook" href="https://www.facebook.com/floridauniversitaria" target="_blank" rel="noreferrer noopener"><em class="fa fa-facebook-square social-icon" style="font-size:50px;color:#7f7c79;">.</em></a><a title="Twitter" href="https://twitter.com/floridauni?lang=es" target="_blank" rel="noreferrer noopener"><em class="fa fa-twitter-square social-icon" style="font-size:50px;color:#7f7c79;">.</em></a></p></div><div class="left-col col-3"><p>Teléfono: 96 122 03 80</p>
+<p>Dirección de correo: info@florida.es</p></div></div></div>    <div class="info container2 clearfix">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 my-md-0 my-2">
+<p style="text-align:center;">2017 Florida Universitària</p>                </div>
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+<div id="back-to-top"><i class="fa fa-angle-up "></i></div>
+
+
+<script type="text/javascript">
+//<![CDATA[
+var require = {
+    baseUrl : 'https://www.floridaoberta.com/lib/requirejs.php/1651591179/',
+    // We only support AMD modules with an explicit define() statement.
+    enforceDefine: true,
+    skipDataMain: true,
+    waitSeconds : 0,
+
+    paths: {
+        jquery: 'https://www.floridaoberta.com/lib/javascript.php/1651591179/lib/jquery/jquery-3.2.1.min',
+        jqueryui: 'https://www.floridaoberta.com/lib/javascript.php/1651591179/lib/jquery/ui-1.12.1/jquery-ui.min',
+        jqueryprivate: 'https://www.floridaoberta.com/lib/javascript.php/1651591179/lib/requirejs/jquery-private'
+    },
+
+    // Custom jquery config map.
+    map: {
+      // '*' means all modules will get 'jqueryprivate'
+      // for their 'jquery' dependency.
+      '*': { jquery: 'jqueryprivate' },
+      // Stub module for 'process'. This is a workaround for a bug in MathJax (see MDL-60458).
+      '*': { process: 'core/first' },
+
+      // 'jquery-private' wants the real jQuery module
+      // though. If this line was not here, there would
+      // be an unresolvable cyclic dependency.
+      jqueryprivate: { jquery: 'jquery' }
+    }
+};
+
+//]]>
+</script>
+<script type="text/javascript" src="https://www.floridaoberta.com/lib/javascript.php/1651591179/lib/requirejs/require.min.js"></script>
+<script type="text/javascript">
+//<![CDATA[
+require(['core/first'], function() {
+;
+require(["media_videojs/loader"], function(loader) {
+    loader.setUp(function(videojs) {
+        videojs.options.flash.swf = "https://www.floridaoberta.com/media/player/videojs/videojs/video-js.swf";
+videojs.addLanguage("es",{
+ "Play": "Reproducción",
+ "Play Video": "Reproducción Vídeo",
+ "Pause": "Pausa",
+ "Current Time": "Tiempo reproducido",
+ "Duration Time": "Duración total",
+ "Remaining Time": "Tiempo restante",
+ "Stream Type": "Tipo de secuencia",
+ "LIVE": "DIRECTO",
+ "Loaded": "Cargado",
+ "Progress": "Progreso",
+ "Fullscreen": "Pantalla completa",
+ "Non-Fullscreen": "Pantalla no completa",
+ "Mute": "Silenciar",
+ "Unmute": "No silenciado",
+ "Playback Rate": "Velocidad de reproducción",
+ "Subtitles": "Subtítulos",
+ "subtitles off": "Subtítulos desactivados",
+ "Captions": "Subtítulos especiales",
+ "captions off": "Subtítulos especiales desactivados",
+ "Chapters": "Capítulos",
+ "You aborted the media playback": "Ha interrumpido la reproducción del vídeo.",
+ "A network error caused the media download to fail part-way.": "Un error de red ha interrumpido la descarga del vídeo.",
+ "The media could not be loaded, either because the server or network failed or because the format is not supported.": "No se ha podido cargar el vídeo debido a un fallo de red o del servidor o porque el formato es incompatible.",
+ "The media playback was aborted due to a corruption problem or because the media used features your browser did not support.": "La reproducción de vídeo se ha interrumpido por un problema de corrupción de datos o porque el vídeo precisa funciones que su navegador no ofrece.",
+ "No compatible source was found for this media.": "No se ha encontrado ninguna fuente compatible con este vídeo."
+});
+
+    });
+});;
+require(["theme_adaptable/bsoptions"], function(amd) { amd.init(false); });;
+require(["theme_adaptable/drawer"], function(amd) { amd.init(); });;
+function legacy_activity_onclick_handler_1(e) { e.halt(); window.open('https://www.floridaoberta.com/mod/url/view.php?id=396983&redirect=1', '', 'width=800,height=600,toolbar=no,location=no,menubar=no,copyhistory=no,status=no,directories=no,scrollbars=yes,resizable=yes'); return false; };
+function legacy_activity_onclick_handler_2(e) { e.halt(); window.open('https://www.floridaoberta.com/mod/resource/view.php?id=396984&redirect=1', '', 'width=800,height=600,toolbar=no,location=no,menubar=no,copyhistory=no,status=no,directories=no,scrollbars=yes,resizable=yes'); return false; };
+function legacy_activity_onclick_handler_3(e) { e.halt(); window.open('https://www.floridaoberta.com/mod/url/view.php?id=468715&redirect=1', '', 'width=800,height=600,toolbar=no,location=no,menubar=no,copyhistory=no,status=no,directories=no,scrollbars=yes,resizable=yes'); return false; };
+function legacy_activity_onclick_handler_4(e) { e.halt(); window.open('https://www.floridaoberta.com/mod/url/view.php?id=468927&redirect=1', '', 'width=800,height=600,toolbar=no,location=no,menubar=no,copyhistory=no,status=no,directories=no,scrollbars=yes,resizable=yes'); return false; };
+function legacy_activity_onclick_handler_5(e) { e.halt(); window.open('https://www.floridaoberta.com/mod/url/view.php?id=396996&redirect=1', '', 'width=800,height=600,toolbar=no,location=no,menubar=no,copyhistory=no,status=no,directories=no,scrollbars=yes,resizable=yes'); return false; };
+function legacy_activity_onclick_handler_6(e) { e.halt(); window.open('https://www.floridaoberta.com/mod/url/view.php?id=396997&redirect=1', '', 'width=800,height=600,toolbar=no,location=no,menubar=no,copyhistory=no,status=no,directories=no,scrollbars=yes,resizable=yes'); return false; };
+function legacy_activity_onclick_handler_7(e) { e.halt(); window.open('https://www.floridaoberta.com/mod/url/view.php?id=396998&redirect=1', '', 'width=800,height=600,toolbar=no,location=no,menubar=no,copyhistory=no,status=no,directories=no,scrollbars=yes,resizable=yes'); return false; };
+function legacy_activity_onclick_handler_8(e) { e.halt(); window.open('https://www.floridaoberta.com/mod/url/view.php?id=396999&redirect=1', '', 'width=800,height=600,toolbar=no,location=no,menubar=no,copyhistory=no,status=no,directories=no,scrollbars=yes,resizable=yes'); return false; };
+
+    require(['core/yui'], function(Y) {
+            Y.on('click', legacy_activity_onclick_handler_1, '#label_10_43', null);
+    });
+;
+
+    require(['core/yui'], function(Y) {
+            Y.on('click', legacy_activity_onclick_handler_2, '#label_10_44', null);
+    });
+;
+
+    require(['core/yui'], function(Y) {
+            Y.on('click', legacy_activity_onclick_handler_3, '#label_10_50', null);
+    });
+;
+
+    require(['core/yui'], function(Y) {
+            Y.on('click', legacy_activity_onclick_handler_4, '#label_10_52', null);
+    });
+;
+
+    require(['core/yui'], function(Y) {
+            Y.on('click', legacy_activity_onclick_handler_5, '#label_10_63', null);
+    });
+;
+
+    require(['core/yui'], function(Y) {
+            Y.on('click', legacy_activity_onclick_handler_6, '#label_10_64', null);
+    });
+;
+
+    require(['core/yui'], function(Y) {
+            Y.on('click', legacy_activity_onclick_handler_7, '#label_10_65', null);
+    });
+;
+
+    require(['core/yui'], function(Y) {
+            Y.on('click', legacy_activity_onclick_handler_8, '#label_10_66', null);
+    });
+;
+require(["block_navigation/navblock"], function(amd) { amd.init("4"); });;
+require(["block_settings/settingsblock"], function(amd) { amd.init("5", null); });;
+
+require(
+[
+    'jquery',
+    'core_message/message_popover'
+],
+function(
+    $,
+    Popover
+) {
+    var toggle = $('#message-drawer-toggle-6293fc4fecd7c6293fc4fe580c44');
+    Popover.init(toggle);
+});
+;
+
+require(['jquery', 'message_popup/notification_popover_controller'], function($, controller) {
+    var container = $('#nav-notification-popover-container');
+    var controller = new controller(container);
+    controller.registerEventListeners();
+    controller.registerListNavigationEventListeners();
+});
+;
+
+    require(['core/yui'], function(Y) {
+            Y.on('click', legacy_activity_onclick_handler_2, '#label_10_44', null);
+    });
+;
+
+        require(['jquery'], function($) {
+            $('#jump-to-activity').change(function() {
+                if (!$(this).val()) {
+                    return false;
+                }
+                $('#url_select_f6293fc4fe580c46').submit();
+            });
+        });
+    ;
+require(["theme_adaptable/showsidebar"], function(amd) { amd.init(); });;
+
+require(['jquery', 'core_message/message_drawer'], function($, MessageDrawer) {
+    var root = $('#message-drawer-6293fc5031d4b6293fc4fe580c47');
+    MessageDrawer.init(root, '6293fc5031d4b6293fc4fe580c47', false);
+});
+;
+require(["core/log"], function(amd) { amd.setConfig({"level":"warn"}); });;
+require(["core/page_global"], function(amd) { amd.init(); });
+});
+//]]>
+</script>
+<script type="text/javascript">
+//<![CDATA[
+M.str = {"moodle":{"lastmodified":"\u00daltima modificaci\u00f3n","name":"Nombre","error":"Error","info":"Informaci\u00f3n","yes":"S\u00ed","no":"No","viewallcourses":"Ver todos los cursos","cancel":"Cancelar","confirm":"Confirmar","areyousure":"\u00bfEst\u00e1 seguro?","closebuttontitle":"Cerrar","unknownerror":"Error desconocido"},"repository":{"type":"Tipo","size":"Tama\u00f1o","invalidjson":"Cadena JSON no v\u00e1lida","nofilesattached":"No se han adjuntado archivos","filepicker":"Selector de archivos","logout":"Salir","nofilesavailable":"No hay archivos disponibles","norepositoriesavailable":"Lo sentimos, ninguno de sus repositorios actuales puede devolver archivos en el formato solicitado.","fileexistsdialogheader":"El archivo existe","fileexistsdialog_editor":"Un archivo con ese nombre ha sido anexado al texto que Usted est\u00e1 editando","fileexistsdialog_filemanager":"Ya ha sido anexado un archivo con ese nombre","renameto":"Cambiar el nombre a \"{$a}\"","referencesexist":"Existen {$a} archivos de alias\/atajos que emplean este archivo como su or\u00edgen","select":"Seleccionar"},"admin":{"confirmdeletecomments":"Est\u00e1 a punto de eliminar comentarios, \u00bfest\u00e1 seguro?","confirmation":"Confirmaci\u00f3n"}};
+//]]>
+</script>
+<script type="text/javascript">
+//<![CDATA[
+(function() {Y.use("moodle-filter_mathjaxloader-loader",function() {M.filter_mathjaxloader.configure({"mathjaxconfig":"\nMathJax.Hub.Config({\n    config: [\"Accessible.js\", \"Safe.js\"],\n    errorSettings: { message: [\"!\"] },\n    skipStartupTypeset: true,\n    messageStyle: \"none\"\n});\n","lang":"es"});
+});
+M.util.help_popups.setup(Y);
+ M.util.js_pending('random6293fc4fe580c48'); Y.on('domready', function() { M.util.js_complete("init");  M.util.js_complete('random6293fc4fe580c48'); });
+})();
+//]]>
+</script>
+
+</div>
+
+
+</body>
+</html>
