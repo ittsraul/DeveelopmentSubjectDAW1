@@ -1,0 +1,659 @@
+/* GENERAL SETTINGS */
+body {
+  font-family: 'Montserrat', sans-serif;
+  background-color:white;
+  color:#1D1D1D;
+  font-size: 16pt;
+  line-height: 1.8em;
+  letter-spacing: 0.02em;
+  margin:0;
+}
+
+/* BODY GEA */
+
+.gea_cuerpo{
+  padding-left: 4em;
+  padding-right:4em;
+}
+.gea_texto-corrido-claro{
+  font-family: 'Montserrat', sans-serif;
+  color:#9D9D9D;
+  font-size: 12pt;
+  line-height: 1.8em;
+  letter-spacing: 0.02em;
+  margin:0;
+}
+
+
+/* HTML PRESSETS */
+
+html > * {
+  font-family: 'Montserrat', sans-serif;
+}
+/*el !important es para que los estilos predefinidos de bulma pierdan importancia ante los valores introducidos*/
+
+.navbar-item img{
+  max-width: 25px;
+  max-height: 25px!important;
+}
+.newpc{
+  font-size: 10px;
+  color: rgb(rgb(0, 255, 145), green, blue);
+}
+
+  div {
+    text-align: left;
+    font-size: 1em;
+  }
+
+
+
+  .imagneProfile {
+    width: 10em;
+    padding-left: 25px;
+    height: 130px;
+  }
+
+  h1 {
+
+    padding-right: 2em;
+    padding-top: 8px;
+
+  }
+
+  a {
+    font-size: 20pt;
+  }
+
+  p {
+    text-align: center;
+  }
+
+  .pio {
+    padding-left: 2%;
+
+  }
+
+  .coment {
+    padding-right: 0em;
+
+    padding-left: 0px;
+  }
+
+  .jam {
+    text-align: left;
+    color: aqua;
+
+  }
+
+
+  .inf {
+    text-align: left;
+    color: springgreen;
+  }
+
+  footer {
+    position: relative;
+    bottom: 0;
+    width: 96%;
+    height: 20px;
+    margin-left: 2%;
+    margin-bottom: 1%;
+  }
+
+  .apo {
+    width: 40em;
+
+  }
+
+
+  li {
+    padding-bottom: 2em;
+  }
+  .pie {
+    position: absolute;
+    bottom: 0;
+    width: 96%;
+    height: 20px;
+    margin-left: 2%;
+    margin-bottom: 1%;
+  }
+  /* ser quienes*/
+  .arti{
+    padding-left: 3em;
+  }
+ .dos{
+  
+  width: 15em;
+ }
+
+  .largo{
+    width: 35em;
+
+  }
+  
+
+  .h1no {
+
+    padding-right: 2em;
+    padding-top: 8px;
+
+  }
+  td{
+    padding-left: 2.5em;
+    padding-top: 1em;
+  }
+  .h1dos{
+    text-align: center;
+  }
+  .jamon {
+    text-align: center;
+  }
+  .dinero{
+    
+    width: 35em;
+  }
+
+  .h1tres{
+    padding-left: 15em;
+  }
+  .uno{
+    width: 9em;
+    padding-left: 2em;
+  }
+  .dos{
+    width: 9em;
+    padding-left: 2em;
+  }
+  .tres{
+    width: 20em;
+    padding-left: 2em;
+    padding-top: 5em;
+  }
+  .mid{
+    padding-top: 7em;
+    padding-left: 3em;
+  }
+  .lef{
+    padding-left: 2em;
+  }
+  .rig{
+    padding-right: 2em;
+  }
+  .pep{
+    text-align: center;
+  }
+
+  .artip{
+    padding-left: 3em;
+  }
+ .dos{
+  
+  width: 15em;
+ }
+ 
+ 
+.lardo{
+  width: 35em;
+
+}
+
+/* BARRA NAVEGADOR */
+
+.gea_header {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16pt;
+  color: #878787;
+  font-weight: 300;
+  padding: 2rem ;
+}
+.gea_header a {
+  color:#16193e;
+  text-decoration: none;
+}
+
+.gea_logo-nav-container {
+  display:flex;
+  justify-content: space-between;
+  align-items: center; /* Alinea nav y logo horizontalmente */
+}
+.gea_logo{
+  margin-left: 2rem;
+  max-width: 60px;
+  max-height: 60px!important;
+  width:60px;
+  height: 60px;
+}
+.gea_navigation ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+  .gea_navigation ul li {
+      display: inline-block;
+  }
+      .gea_navigation ul li a {
+          font-size:12px;
+          display: block;
+          padding: 0.5rem 2rem;
+          
+          transition:all 0.4s linear;
+          letter-spacing: 0.15em;
+      }
+      .gea_navigation ul li a:hover{
+          
+          text-decoration: underline;
+          border-radius: none;
+          background: none;
+          transition:all 0.4s linear;
+      }
+      .gea_navigation ul li .gea_selected {
+        border-radius: 100px;
+        font-weight: 600;
+        border: 2px solid #39FF8A;
+    }
+/* FOOTER */
+footer {
+  margin-top: 1em;
+  margin-left: 0%;
+  background-color: #1F2D25;
+  color: #faf9f9;
+  height: fit-content;
+  width: 100%;
+
+  font-size: 0.9rem;
+  line-height: 1.8em;
+  letter-spacing: 0.02em;
+
+}
+footer .columns {
+  font-size: 12px;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+}
+  footer .columns .column .gea_contenedorFooter {
+    font-family: 'Montserrat', sans-serif;
+    padding-bottom: 5em;
+  }
+  footer .columns .column .gea_contenedorFooter h2 {
+    font-weight: 700;
+  }
+
+  /* INDEX */
+  .gea_section1{
+    padding-top: 2.5vw;
+    padding-bottom:6vw;
+  }
+
+  .gea_h1{
+    font-size: 7vw;
+    font-weight: 900;
+    
+  }
+  .gea_subtitulo{
+    font-size:8vw;
+    font-weight: 300;
+    color:#39FF8A;
+    margin-top: -0.3em;
+    
+  }
+  img.gea_main-image{
+    width: 100%;
+    height: auto;
+  }
+  div.gea_img-container {
+    width: 96%;
+    max-width: 600px;
+    margin: 0 auto;
+    margin-right: -20px;
+  }
+  div.gea_contenedor-boton-left{
+    padding-top:25px;
+  }
+  .gea_contenedor-boton-left button.gea_call-to-action {
+    float:left;
+  }
+
+  .gea_contenedor-boton-left button.gea_call-to-action::hover {
+      padding:1vw 4vw;
+
+  }
+
+  /* BUTTONS */
+  .gea_border-button{
+    border-radius:100px;
+    border: 2px solid #39FF8A;
+    background-color: white;
+    width: auto;
+    padding:15px 30px;
+    font-size: 14px;
+    color:#1D1D1D;
+    cursor: pointer;
+  }
+  .gea_call-to-action {
+     border-radius:100px;
+     border:none;
+     background-color: #39FF8A;
+     width: auto;
+     padding:15px 30px;
+     font-size: 14px;
+     color:#1D1D1D;
+     cursor: pointer;
+   }
+   .gea_card-button{
+     border-radius:100px;
+     border:none;
+     background-color: #39FF8A;
+     margin: 10px 0px;
+     padding:10px 30px;
+     font-size: 14px;
+     width:100%;
+     color:#1D1D1D;
+     cursor: pointer;
+   }
+    .gea_card-button:hover{
+      border: 2px solid #2be076;
+    }
+
+/* Diseño tarjeta */
+
+.gea_card{
+  min-width: 230px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.gea_card-max-width {
+  max-width: 25vw;
+  min-width: 20vw;
+}
+.gea_part-title-card{
+
+  padding-top: 10px;
+  padding-bottom: -10px;
+  display: block;
+}
+.gea_titulo-card{
+  font-family: 'Montserrat';
+  font-size: 13px;
+  font-weight: 800;
+  
+  display:flex;
+  float:left;
+}
+.gea_contenedor-precio-card{
+  font-family: 'Montserrat';
+  display: flex;
+  float: right;
+}
+.gea_description-card{
+  display: block;
+  font-size: 14px;
+  color:#aba9a9;
+  padding-bottom:5px;
+  font-size-adjust: initial;
+}
+  .geo_precio-final{
+    display:block;
+    text-align: right;
+  }
+  .gea_precio-tachado{
+    font-size: 12px;
+    text-align: right;
+
+    display:block;
+    text-decoration: line-through;
+    font-style: italic;
+  }
+.gea_leer-mas{
+  font-family: 'Montserrat';
+  font-size:14px;
+  color:#466AFF;
+  font-style:italic;
+}
+/* OFFERS - PAGE */
+.gea_img-encabezado{
+  width: 100%;
+  border-radius: 20px;
+}
+.gea_contenedor-filtros{
+  padding: 15px 0px;
+  display:flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+  div.gea_contenedor-filtros :last-child{
+    border-right: 1px solid #707070;
+  }
+  div.gea_contenedor-filtros .gea_filtro a{
+    border-right: 0px solid #707070;
+  }
+.gea_filtro{
+  font-family: 'Montserrat';
+  font-weight: 400;
+  font-size: 12px;
+  text-align: center;
+  padding: 0px 2em;
+  padding-top: 17px;
+  padding-bottom: 20px;
+  border-left:1px solid #707070;
+  flex: auto;
+  cursor: pointer;
+}
+  .gea_filtro.gea_filtro-selected{
+    font-weight: 800;
+  }
+  div.gea_filtro  a {
+    font-size: inherit;
+    color:inherit;
+    border-right: 0px;
+    transition: 1s;
+  }
+  div.gea_filtro  a:hover {
+    font-size: inherit;
+    color:#466AFF;
+    font-weight: 600;
+  }
+  img .gea_order-by-img {
+    width: 1em;
+    border-right:0px;
+    padding-left: 5px;
+    margin:5px;
+    display: inline;
+  }
+
+  
+.gea_section-title{
+  font-family: 'Montserrat';
+  font-weight: 600;
+  padding-top:15px;
+}
+.gea_pagination-pages-right{
+  text-align: right;
+}
+.gea_pagination-numbers-container{
+  text-align: center;
+}
+.gea_pagination-numbers-container ul{
+  list-style: none;
+}
+.gea_pagination-numbers-container ul li {
+  display: inline;
+}
+
+/* Login page */
+.gea_saludo{
+  padding-bottom: 3vw;
+}
+.gea_login-title{
+  font-family: 'Montserrat';
+  font-weight: 800;
+  text-align: center;
+  font-size: 40px;
+}
+.gea_login-subtitle{
+  font-family: 'Montserrat';
+  font-weight: 300;
+  text-align: center;
+  font-size: 14px;
+}
+
+.gea_form-contenedor{
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    height: 500px; 
+    /*height: 10vh;  Esto lo tuve que poner así por que o si no me aparecía fragmentado */
+}
+.gea_form-centered{
+  position: absolute;
+  top: 60%;
+  left: 40%;
+  transform: translate(-30%,-30%);
+  width: 600px;
+  min-width: 450px;
+  background: white;
+  border-radius: 10px;
+}
+.gea_form-centered form {
+  padding: 0 40px;
+  box-sizing: border-box; 
+}
+form .gea_formCampo{
+  position: relative;
+  border-bottom: 2px solid #adadad;
+  margin: 30px 0; 
+}
+
+.gea_formCampo input{
+  width: 100%;
+  padding: 0 5px;
+  height: 40px;
+  font-size: 14px;
+  border: none;
+  background: none;
+  outline: none;
+}
+
+.gea_formCampo label{
+  position: absolute;
+  top: 50%;
+  left: 5px;
+  color: #adadad;
+  transform: translateY(-60%);
+  font-size: 16px;
+  pointer-events: none;
+  transition: .5s;
+}
+
+.gea_formCampo input:focus ~ label,
+.gea_formCampo input:valid ~ label{
+  top: -5px;
+  color: #39FF8A;
+}
+.gea_login-submit{
+  display: flex;
+  justify-content: space-between;
+}
+.gea_mensaje-pass{
+  font-family: 'Montserrat';
+  font-size: 12px;
+  font-weight: 300;
+  color:#adadad;
+  text-align: right;
+  margin-top: -20px;
+  padding-bottom:30px;
+}
+/* PAGINA REGISTRO */
+
+.gea_registro_title{
+  font-size: 5vw;
+  font-weight: 900;
+}
+
+.gea_registro_subtitle{
+  font-size:2vw;
+  font-weight: 700;
+  color:#39FF8A;
+  margin-top: -0.3em;
+
+}
+
+.gea_align-text-center{
+  text-align: center;
+}
+
+.gea_max-width-600{
+  max-width: 500px;
+}
+.gea_margin-0-auto{
+  margin:0px auto;
+}
+.gea_column-width{
+  width: 20px;
+}
+.gea_encabezado-register{
+  text-align: center;
+  max-width: 500px;
+  margin:0px auto;
+}
+  /*TABLE STYLE */
+  table.blueTable {
+    border: 1px solid #1C6EA4;
+    background-color: #EEEEEE;
+    width: 100%;
+    text-align: left;
+    border-collapse: collapse;
+  }
+  table.blueTable td, table.blueTable th {
+    border: 1px solid #AAAAAA;
+    padding: 3px 2px;
+  }
+  table.blueTable tbody td {
+    font-size: 13px;
+  }
+  table.blueTable tr:nth-child(even) {
+    background: #D0E4F5;
+  }
+  table.blueTable thead {
+    background: #1C6EA4;
+    background: -moz-linear-gradient(top, #5592bb 0%, #327cad 66%, #1C6EA4 100%);
+    background: -webkit-linear-gradient(top, #5592bb 0%, #327cad 66%, #1C6EA4 100%);
+    background: linear-gradient(to bottom, #5592bb 0%, #327cad 66%, #1C6EA4 100%);
+    border-bottom: 2px solid #444444;
+  }
+  table.blueTable thead th {
+    font-size: 15px;
+    font-weight: bold;
+    color: #FFFFFF;
+    border-left: 2px solid #D0E4F5;
+  }
+  table.blueTable thead th:first-child {
+    border-left: none;
+  }
+  
+  table.blueTable tfoot {
+    font-size: 14px;
+    font-weight: bold;
+    color: #FFFFFF;
+    background: #D0E4F5;
+    background: -moz-linear-gradient(top, #dcebf7 0%, #d4e6f6 66%, #D0E4F5 100%);
+    background: -webkit-linear-gradient(top, #dcebf7 0%, #d4e6f6 66%, #D0E4F5 100%);
+    background: linear-gradient(to bottom, #dcebf7 0%, #d4e6f6 66%, #D0E4F5 100%);
+    border-top: 2px solid #444444;
+  }
+  table.blueTable tfoot td {
+    font-size: 14px;
+  }
+  table.blueTable tfoot .links {
+    text-align: right;
+  }
+  table.blueTable tfoot .links a{
+    display: inline-block;
+    background: #1C6EA4;
+    color: #FFFFFF;
+    padding: 2px 8px;
+    border-radius: 5px;
+  }
